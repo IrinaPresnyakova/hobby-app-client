@@ -1,7 +1,8 @@
 import React, { useEffect, useState }  from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import './CurrentProjects.scss'
-
+import AddProject from "../../components/AddProject/AddProject";
 
 const CurrentProjects = () => {
     const [listOfProjects, setListOfProjects] = useState([]);
@@ -17,19 +18,26 @@ const CurrentProjects = () => {
     return ( 
         <>
             <h1>Current projects</h1>
-            {/* key is the index in the array, value is what is in it */}
-            {listOfProjects.map((item, key) => {
+            <div button-wrapper>
+                <Link to="/add-project">Add a new project</Link>
+            </div>
+            <div className="projects-wrapper">
+                {listOfProjects.map((item, key) => {
                 return (
-                    <div className="project-container">
-                        <div className="project__title">{item.title}</div>
-                        <div className="project__detail">{item.materials}</div>
-                        <div className="project__detail">{item.progress}</div>
-                    </div>
-                )
-                
-                    
-                
+                    <>
+                        
+                        <div key={item.id} className="project">
+                            <div className="project__title">Project: {item.title}</div>
+                            <div className="project__detail">Materials: {item.materials}</div>
+                            <div className="project__detail">Progress: {item.progress}</div>
+                        </div>  
+                    </>
+                                     
+                )                    
             })}
+            </div>
+           
+            
            
         </>
         

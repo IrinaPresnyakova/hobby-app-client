@@ -35,3 +35,8 @@ Moving along nicely, database accepts data entered from Postman, so next  moving
 
 Good progress today! Front end picks up data from DB and shows it on the page. Need to resolve the issue with the key thing... "Warning: Each child in a list should have a unique "key" prop."
 --> start with this tomorrow!
+
+August 1, 2022
+I think I resolved the key issue.
+Taylan gave me a great idea for a name for my project: HobScotch, like hopscotch. I kind of like it, will be a working title for now. 
+Today working through the next tutorial to get ideas on form validation. Also started some scss. 

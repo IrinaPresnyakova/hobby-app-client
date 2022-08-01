@@ -15,7 +15,9 @@ const Home = () => {
         <div>
             <h1> HOME PAGE!!</h1>
             <p>Each of the following will lead to a corresponding page:</p>
-            <h2>Current projects</h2>
+            <a href="/current">
+                <h2 >Current projects</h2>
+            </a>
             <h2>Bucket list</h2>
             <h2>Archived projects</h2>
         </div>
