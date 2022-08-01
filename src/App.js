@@ -7,7 +7,6 @@ import CurrentProjects from './pages/CurrentProjects/CurrentProjects';
 // import ArchivedProjects from './pages/ArchivedProjects/ArchivedProjects'
 // import BucketListProjects from './pages/BucketList/BucketListProjects'
 
-
 class App extends React.Component {
 
   render() {

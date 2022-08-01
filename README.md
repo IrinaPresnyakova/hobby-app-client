@@ -20,3 +20,18 @@ Checking routes with Postman
 .get("http://localhost:5500/") - returns my message that page is not found
 .get("http://localhost:5500/current") - returns an array with objects, each of a project
 
+--- 
+July 28, 2022
+Lost a bit - where to start? Build a database? Learn Prisma? Do a tutorial on Knex? Or one on connecting server to a DB? Or just start working on my own thing??? 
+
+July 30, 2022
+OK so I found an amazing tutorials on a CRUD app! Coded along one, now going through the second one with my capstone opened. 
+Bit Q today: how to save lists in a database... Niko: "it would be multiple rows in a table, with a key field that connects all of the rows together. Each row would have a unique primary key, but there should be a secondary key that connects the rows together else you would not be able to know which rows are part of the list"
+
+OK i will code it as TEXT for now and will watch a tutorial later on :)
+
+July 31, 2022
+Moving along nicely, database accepts data entered from Postman, so next  moving to the front end to set up the form for entering the data
+
+Good progress today! Front end picks up data from DB and shows it on the page. Need to resolve the issue with the key thing... "Warning: Each child in a list should have a unique "key" prop."
+--> start with this tomorrow!

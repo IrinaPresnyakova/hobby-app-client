@@ -4,34 +4,33 @@ import './CurrentProjects.scss'
 
 
 const CurrentProjects = () => {
-
-    const [currentProjects, setCurrentProjects] = useState('');
+    const [listOfProjects, setListOfProjects] = useState([]);
 
     useEffect(() => {
-        getAllProjects()
-    }, [])
-
-    const getAllProjects = () => {
         axios
-            .get("http://localhost:5500/current")
-            .then(response => {
-                setCurrentProjects(response.data) 
-                console.log(response.data);
-                
-            })
-            .catch(error => console.error(error))
-    }
-
+        .get("http://localhost:5500/current")
+        .then((response) => {
+            setListOfProjects(response.data);
+        })
+    }, []);
+    
     return ( 
         <>
             <h1>Current projects</h1>
-            {currentProjects.map((item) => {
-                const {name, materials, sources, budget} = item 
+            {/* key is the index in the array, value is what is in it */}
+            {listOfProjects.map((item, key) => {
+                return (
+                    <div className="project-container">
+                        <div className="project__title">{item.title}</div>
+                        <div className="project__detail">{item.materials}</div>
+                        <div className="project__detail">{item.progress}</div>
+                    </div>
+                )
+                
+                    
+                
             })}
-            <ul>
-                <li>Growing tomatoes</li> 
-                <li>Making a SPA</li>
-            </ul>
+           
         </>
         
      );

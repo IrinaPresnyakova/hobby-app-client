@@ -1,8 +1,16 @@
 import React from "react";
 import axios from 'axios';
+import { useEffect } from "react";
 
 const Home = () => {
-    
+    // useEffect(() => {
+    //     axios
+    //     .get("http://localhost:5500/current")
+    //     .then((response) => {
+    //         console.log(response);
+    //     })
+    // }, [])    
+
     return(
         <div>
             <h1> HOME PAGE!!</h1>
