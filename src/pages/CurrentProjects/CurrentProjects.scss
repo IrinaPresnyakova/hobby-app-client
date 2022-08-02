@@ -1,17 +1,14 @@
-.modal {
-    position: absolute;
-    top: 40px;
-    left: 40px;
-    right: 40px;
-    bottom: 40px;
-    background-color: papayawhip;
-  }
+@use './../../styles/partials/mixins' as *;
 
-  .overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rebeccapurple;
-  }
+.project-wrapper {
+  display: flex;
+  flex-direction: column;
+
+}
+
+.project {
+  border: .0625rem solid blueviolet;
+  border-radius: .25rem;
+  margin: 1rem;
+  padding: 1rem;
+}
