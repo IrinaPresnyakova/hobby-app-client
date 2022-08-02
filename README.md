@@ -40,3 +40,8 @@ August 1, 2022
 I think I resolved the key issue.
 Taylan gave me a great idea for a name for my project: HobScotch, like hopscotch. I kind of like it, will be a working title for now. 
 Today working through the next tutorial to get ideas on form validation. Also started some scss. 
+OK doing great, a form is ready and hooked to DB, basic validation is done, too. Exciting. 
+
+Issues: 
+1. Warning: Received `true` for a non-boolean attribute `button-wrapper`.
+2. The key thing is acting up again, need to look at it closely.

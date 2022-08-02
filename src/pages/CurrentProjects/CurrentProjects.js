@@ -1,11 +1,13 @@
 import React, { useEffect, useState }  from "react";
-import { Link } from "react-router-dom";
+
+import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 import './CurrentProjects.scss'
 import AddProject from "../../components/AddProject/AddProject";
 
 const CurrentProjects = () => {
     const [listOfProjects, setListOfProjects] = useState([]);
+    let history = useHistory();
 
     useEffect(() => {
         axios
@@ -25,22 +27,20 @@ const CurrentProjects = () => {
                 {listOfProjects.map((item, key) => {
                 return (
                     <>
-                        
-                        <div key={item.id} className="project">
+                        <div 
+                            className="project" 
+                            onClick={() => {
+                                history.push(`/project/${item.id}`)
+                            }}>
                             <div className="project__title">Project: {item.title}</div>
                             <div className="project__detail">Materials: {item.materials}</div>
                             <div className="project__detail">Progress: {item.progress}</div>
                         </div>  
-                    </>
-                                     
+                    </>                                  
                 )                    
             })}
             </div>
-           
-            
-           
         </>
-        
      );
 }
  

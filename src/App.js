@@ -5,6 +5,7 @@ import Header from "./components/Header/Header";
 import Home from './pages/Home/Home';
 import CurrentProjects from './pages/CurrentProjects/CurrentProjects';
 import AddProject from "./components/AddProject/AddProject";
+import SingleProject from "./pages/SingleProject/SingleProject";
 // import ArchivedProjects from './pages/ArchivedProjects/ArchivedProjects'
 // import BucketListProjects from './pages/BucketList/BucketListProjects'
 
@@ -16,6 +17,7 @@ function App () {
               <Switch>            
                   <Route path="/" exact component={Home} /> 
                   <Route path="/current" component={CurrentProjects} />  
+                  <Route path="/project/:id" component={SingleProject} />
                   <Route path="/add-project" component={AddProject}/>          
                   {/* <Route path="/archived" component={ArchivedProjects} />  
                   <Route path="/bucket-list" component={BucketListProjects} />  */}
