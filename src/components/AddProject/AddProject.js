@@ -4,9 +4,10 @@ import "../../pages/CurrentProjects/CurrentProjects.scss"
 import "./AddProject.scss"
 import * as Yup from 'yup'
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 const AddProject = () => {
-
+    let history = useHistory();
     const initialValues = {
         title: "",
         materials: "",
@@ -23,9 +24,12 @@ const AddProject = () => {
         axios
         .post("http://localhost:5500/current", data)
         .then((response) => {
+            history.push("/current")
             console.log("IT WORKED")
         })
     }
+
+    
 
     return ( 
         
