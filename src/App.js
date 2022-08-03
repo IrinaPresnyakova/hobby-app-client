@@ -17,7 +17,7 @@ function App () {
               <Switch>            
                   <Route path="/" exact component={Home} /> 
                   <Route path="/current" component={CurrentProjects} />  
-                  <Route path="/project/:id" component={SingleProject} />
+                  <Route path="/projects/:id" component={SingleProject} />
                   <Route path="/add-project" component={AddProject}/>          
                   {/* <Route path="/archived" component={ArchivedProjects} />  
                   <Route path="/bucket-list" component={BucketListProjects} />  */}

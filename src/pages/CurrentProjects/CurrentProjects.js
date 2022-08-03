@@ -30,7 +30,7 @@ const CurrentProjects = () => {
                         <div 
                             className="card" 
                             onClick={() => {
-                                history.push(`/project/${item.id}`)
+                                history.push(`/projects/${item.id}`)
                             }}>
                             <div className="project__title">Project: {item.title}</div>
                             <div className="project__detail">Materials: {item.materials}</div>
