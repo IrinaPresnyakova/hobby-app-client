@@ -21,14 +21,14 @@ const CurrentProjects = () => {
         <>
             <h1>Current projects</h1>
             <div button-wrapper>
-                <Link to="/add-project">Add a new project</Link>
+                <Link to="/add-project" className="add-new">Add a new project</Link>
             </div>
-            <div className="projects-wrapper">
+            <div className="cards-wrapper">
                 {listOfProjects.map((item, key) => {
                 return (
                     <>
                         <div 
-                            className="project" 
+                            className="card" 
                             onClick={() => {
                                 history.push(`/project/${item.id}`)
                             }}>
