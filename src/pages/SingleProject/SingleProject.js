@@ -12,7 +12,7 @@ const SingleProject = () => {
 
     let history = useHistory();
 
-    useEffect(() => {
+    useEffect((id) => {
         axios
             .get(`http://localhost:5500/projects/${id}`)
             .then((response) => {
@@ -25,13 +25,15 @@ const SingleProject = () => {
             })
     }, [])
 
-    // const deleteProject = (id) => {
-    //     axios
-    //         .delete(`http://localhost:5500/projects/${id}`)
-    //         .then((response) => {
-    //             history.push("/projects")
-    //         })
-    // }
+    const deleteProject = (id) => {
+        axios
+            .delete(`http://localhost:5500/projects/${id}`)
+            .then((response) => {
+                alert("This project was deleted!")
+                history.push("/current")
+            })
+    }
+
     const addNote = () => {
         axios
             .post("http://localhost:5500/notes", {noteText: newNote, ProjectId:id})
@@ -45,10 +47,11 @@ const SingleProject = () => {
     return ( 
         <div className="single-project-wrapper">
             <button>Edit this project</button>
-            {/* <button 
-                onClick={deleteProject(projectObject.id)}>Delete this project
-            </button> */}
+            <button onClick={()=> {deleteProject(projectObject.id)}}>
+                Delete this project
+            </button>
             <div className="project__card card">
+                <div className="project__card--title">{projectObject.id}</div>
                 <div className="project__card--title">{projectObject.title}</div>
                 <div className="project__card--info">{projectObject.materials}</div>
             </div>
