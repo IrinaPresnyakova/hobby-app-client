@@ -6,7 +6,8 @@ import Home from './pages/Home/Home';
 import CurrentProjects from './pages/CurrentProjects/CurrentProjects';
 import AddProject from "./components/AddProject/AddProject";
 import SingleProject from "./pages/SingleProject/SingleProject";
-// import ArchivedProjects from './pages/ArchivedProjects/ArchivedProjects'
+import ArchivedProjects from './pages/ArchivedProjects/ArchivedProjects'
+import SingleArchived from "./pages/SingleArchived/SingleArchived";
 // import BucketListProjects from './pages/BucketList/BucketListProjects'
 
 function App () {
@@ -19,8 +20,9 @@ function App () {
                   <Route path="/current" component={CurrentProjects} />  
                   <Route path="/projects/:id" component={SingleProject} />
                   <Route path="/add-project" component={AddProject}/>          
-                  {/* <Route path="/archived" component={ArchivedProjects} />  
-                  <Route path="/bucket-list" component={BucketListProjects} />  */}
+                  <Route path="/archive" component={ArchivedProjects} />
+                  <Route path="/archive/:id" component={SingleArchived} />
+                  {/* <Route path="/bucket-list" component={BucketListProjects} /> */}
               </Switch>
       </BrowserRouter>
     )

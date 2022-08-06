@@ -6,6 +6,7 @@ import '../CurrentProjects/CurrentProjects.scss';
 
 const SingleProject = () => {
     let { id } = useParams();
+    
     const [projectObject, setProjectObject] = useState ({});
     const [notes, setNotes] = useState ([]);
     const [newNote, setNewNote] = useState ("");
@@ -49,16 +50,22 @@ const SingleProject = () => {
         axios
             .patch(`http://localhost:5500/projects/${id}`)
             .then((response) => {
-                console.log(response.data);
+                // console.log(response.data);
+                alert("This project was archived!")
+                history.push("/current")
             })
     }
-    // const editProject = (id) => {
-    //     console.log("Hello")
-    // }
+
     return ( 
+        <>
+        <a href="/current"><h3 className="title"> Back to all current projects</h3></a>
         <div className="single-project-wrapper">
-            <button>Edit this project</button>
-            <button onClick={()=> {archiveProject(projectObject.id)}}>Archive this project</button>
+            <button>
+                Edit this project
+            </button>
+            <button onClick={()=> {archiveProject(projectObject.id)}}>
+                Archive this project
+            </button>
             <button onClick={()=> {deleteProject(projectObject.id)}}>
                 Delete this project
             </button>
@@ -86,6 +93,8 @@ const SingleProject = () => {
                 }
             <div className="note"></div>
         </div>
+        </>
+        
      );
 }
  

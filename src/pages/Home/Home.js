@@ -13,13 +13,13 @@ const Home = () => {
 
     return(
         <div>
-            <h1> HOME PAGE!!</h1>
+            <h1> HOME PAGE</h1>
             <p>Each of the following will lead to a corresponding page:</p>
             <a href="/current">
                 <h2 >Current projects</h2>
             </a>
-            <h2>Bucket list</h2>
-            <h2>Archived projects</h2>
+            <a href="/archive"><h2 className="title">Archive</h2></a>
+            <a href="/bucket-list"><h2 className="title">Bucket List</h2></a>
         </div>
     )
 }
