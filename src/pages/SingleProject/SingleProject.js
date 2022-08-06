@@ -12,7 +12,7 @@ const SingleProject = () => {
 
     let history = useHistory();
 
-    useEffect((id) => {
+    useEffect(() => {
         axios
             .get(`http://localhost:5500/projects/${id}`)
             .then((response) => {
@@ -44,16 +44,27 @@ const SingleProject = () => {
         })
     }
 
+    const archiveProject = (id) => {
+        console.log(id);
+        axios
+            .patch(`http://localhost:5500/projects/${id}`)
+            .then((response) => {
+                console.log(response.data);
+            })
+    }
+    // const editProject = (id) => {
+    //     console.log("Hello")
+    // }
     return ( 
         <div className="single-project-wrapper">
             <button>Edit this project</button>
+            <button onClick={()=> {archiveProject(projectObject.id)}}>Archive this project</button>
             <button onClick={()=> {deleteProject(projectObject.id)}}>
                 Delete this project
             </button>
             <div className="project__card card">
-                <div className="project__card--title">{projectObject.id}</div>
                 <div className="project__card--title">{projectObject.title}</div>
-                <div className="project__card--info">{projectObject.materials}</div>
+                <div className="project__card--info">{projectObject.materials} </div>
             </div>
             
             <div className="add-new">
