@@ -46,7 +46,6 @@ const SingleProject = () => {
     }
 
     const archiveProject = (id) => {
-        console.log(id);
         axios
             .patch(`http://localhost:5500/projects/${id}`)
             .then((response) => {

@@ -21,7 +21,7 @@ function App () {
                   <Route path="/projects/:id" component={SingleProject} />
                   <Route path="/add-project" component={AddProject}/>          
                   <Route path="/archive" component={ArchivedProjects} />
-                  <Route path="/archive/:id" component={SingleArchived} />
+                  <Route path="/archive-view/:id" component={SingleArchived} />
                   {/* <Route path="/bucket-list" component={BucketListProjects} /> */}
               </Switch>
       </BrowserRouter>

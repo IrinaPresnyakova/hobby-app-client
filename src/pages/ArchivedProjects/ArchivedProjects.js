@@ -4,14 +4,14 @@ import axios from "axios";
 import './ArchivedProjects.scss'
 
 const ArchivedProjects = () => {
-    const [listOfArchived, setlistOfArchived] = useState([]);
+    const [listOfArchived, setListOfArchived] = useState([]);
     let history = useHistory();
 
     useEffect(() => {
         axios
         .get("http://localhost:5500/archive")
         .then((response) => {
-            setlistOfArchived(response.data);
+            setListOfArchived(response.data);
             console.log(response);
         })
     }, []);
@@ -19,6 +19,7 @@ const ArchivedProjects = () => {
     return ( 
         <>
             <h1>Archived projects</h1>
+            <h2>Click on a project to view details</h2>
            
             <div className="small-cards-wrapper">
                 {listOfArchived.map((item, key) => {
@@ -27,8 +28,9 @@ const ArchivedProjects = () => {
                         <div 
                             className="small-card" 
                             onClick={() => {
-                                history.push(`/archive/${item.id}`)
-                            }}>
+                                history.push(`/archive-view/${item.id}`)
+                            }
+                            }>
                             <div className="project__title" >Project: {item.title}</div>
                             
                         </div>  
