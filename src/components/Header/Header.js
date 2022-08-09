@@ -8,6 +8,7 @@ function Header() {
         <div className="header-container">
             <p>About this project | Contact | Log in</p>
             <a href="/"><h2 className="title"> HobScotch</h2></a>
+            
         </div>
         
     )

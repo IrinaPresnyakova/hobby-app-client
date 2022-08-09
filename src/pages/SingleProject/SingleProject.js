@@ -6,13 +6,14 @@ import '../CurrentProjects/CurrentProjects.scss';
 
 const SingleProject = () => {
     let { id } = useParams();
+    
     const [projectObject, setProjectObject] = useState ({});
     const [notes, setNotes] = useState ([]);
     const [newNote, setNewNote] = useState ("");
 
     let history = useHistory();
 
-    useEffect((id) => {
+    useEffect(() => {
         axios
             .get(`http://localhost:5500/projects/${id}`)
             .then((response) => {
@@ -44,16 +45,32 @@ const SingleProject = () => {
         })
     }
 
+    const archiveProject = (id) => {
+        axios
+            .patch(`http://localhost:5500/projects/${id}`)
+            .then((response) => {
+                // console.log(response.data);
+                alert("This project was archived!")
+                history.push("/current")
+            })
+    }
+
     return ( 
+        <>
+        <a href="/current"><h3 className="title"> Back to all current projects</h3></a>
         <div className="single-project-wrapper">
-            <button>Edit this project</button>
+            <button>
+                Edit this project
+            </button>
+            <button onClick={()=> {archiveProject(projectObject.id)}}>
+                Archive this project
+            </button>
             <button onClick={()=> {deleteProject(projectObject.id)}}>
                 Delete this project
             </button>
             <div className="project__card card">
-                <div className="project__card--title">{projectObject.id}</div>
                 <div className="project__card--title">{projectObject.title}</div>
-                <div className="project__card--info">{projectObject.materials}</div>
+                <div className="project__card--info">{projectObject.materials} </div>
             </div>
             
             <div className="add-new">
@@ -75,6 +92,8 @@ const SingleProject = () => {
                 }
             <div className="note"></div>
         </div>
+        </>
+        
      );
 }
  
