@@ -8,7 +8,7 @@ import AddProject from "./components/AddProject/AddProject";
 import SingleProject from "./pages/SingleProject/SingleProject";
 import ArchivedProjects from './pages/ArchivedProjects/ArchivedProjects'
 import SingleArchived from "./pages/SingleArchived/SingleArchived";
-// import BucketListProjects from './pages/BucketList/BucketListProjects'
+import BucketListProjects from './pages/BucketList/BucketListProjects'
 
 function App () {
  
@@ -22,7 +22,7 @@ function App () {
                   <Route path="/add-project" component={AddProject}/>          
                   <Route path="/archive" component={ArchivedProjects} />
                   <Route path="/archive-view/:id" component={SingleArchived} />
-                  {/* <Route path="/bucket-list" component={BucketListProjects} /> */}
+                  <Route path="/bucket-list" component={BucketListProjects} />
               </Switch>
       </BrowserRouter>
     )

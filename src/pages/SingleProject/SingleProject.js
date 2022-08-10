@@ -26,15 +26,6 @@ const SingleProject = () => {
             })
     }, [])
 
-    const deleteProject = (id) => {
-        axios
-            .delete(`http://localhost:5500/projects/${id}`)
-            .then((response) => {
-                alert("This project was deleted!")
-                history.push("/current")
-            })
-    }
-
     const addNote = () => {
         axios
             .post("http://localhost:5500/notes", {noteText: newNote, ProjectId:id})
@@ -42,8 +33,12 @@ const SingleProject = () => {
                 const noteToAdd = {noteText: newNote};
                 setNotes([...notes, noteToAdd]);
                 setNewNote("");
-        })
-    }
+            })
+        }
+
+    const editProject = (id, editedProject) => {
+        
+    }    
 
     const archiveProject = (id) => {
         axios
@@ -53,8 +48,17 @@ const SingleProject = () => {
                 alert("This project was archived!")
                 history.push("/current")
             })
-    }
+        }
 
+    const deleteProject = (id) => {
+        axios
+            .delete(`http://localhost:5500/projects/${id}`)
+            .then((response) => {
+                alert("This project was deleted!")
+                history.push("/current")
+            })
+        }
+    
     return ( 
         <>
         <a href="/current"><h3 className="title"> Back to all current projects</h3></a>
