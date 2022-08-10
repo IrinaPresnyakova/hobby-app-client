@@ -1,9 +1,10 @@
 import React, { useEffect, useState }  from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import axios from "axios";
 import "./BucketListProjects.scss"
 import Button from "../../components/Button/Button";
 import '../../components/Card/Card.scss'
+
 
 const BucketList = () => {
 
@@ -22,7 +23,7 @@ const BucketList = () => {
     return (
         <>
             <h1>Ideas for future projects</h1>
-            <h2>Add a new project</h2> 
+            <Link to="/add-idea" className="add-new">Add a new idea</Link>
             <div className="small-cards-wrapper">
                 {bucketList.map((item, key) => {
                     return (
@@ -34,7 +35,11 @@ const BucketList = () => {
                                 // }}
                                 >
                                 <div >{item.title}</div>
-                                <button>Move to current</button>
+                                <div className="button-wrapper">
+
+                
+            </div>
+                                
                                 <button>Edit</button>
                                 <button>Add a note</button>
                                 <button>Delete</button>
