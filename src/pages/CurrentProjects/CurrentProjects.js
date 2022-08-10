@@ -2,6 +2,7 @@ import React, { useEffect, useState }  from "react";
 import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 import './CurrentProjects.scss'
+import '../../components/Card/Card.scss'
 
 const CurrentProjects = () => {
     const [listOfProjects, setListOfProjects] = useState([]);
@@ -30,7 +31,8 @@ const CurrentProjects = () => {
                             className="card" 
                             onClick={() => {
                                 history.push(`/projects/${item.id}`)
-                            }}>
+                            }}
+                            >
                             <div className="project__title">Project: {item.title} </div>
                             <div className="project__detail">Materials: {item.materials}</div>
                             <div className="project__detail">Progress: {item.progress}</div>

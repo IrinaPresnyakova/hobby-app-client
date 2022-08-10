@@ -1,0 +1,45 @@
+@use '../../styles/partials/_colors.scss' as *;
+@use '../../styles/partials/_mixins.scss' as *;
+
+.button-wrapper {
+    padding: 1rem 0;
+    width: 100%;
+    @include tablet {
+        width: 95%;
+        padding: 0;        
+    }
+}
+
+button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: 1rem;
+    background-color: $laurel-green;
+    font-weight: 700;
+    border-radius: .25rem;
+    border: none;
+    
+    @include tablet {
+        width: 65%;
+    }
+    @include desktop {
+        width: 70%;
+    }
+    // &__icon {
+    //     color: white;
+    //     padding-left: 3%;
+    //     padding-right: 30%;
+    //     padding-top: 0.4rem;
+    //     @include tablet {
+    //         padding-right: 20%;
+    //     }
+    // }
+    // &__text {
+    //     color: white;
+    //     @include tablet {
+    //         padding-right: 20%;
+    //     }
+    // }
+}
