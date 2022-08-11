@@ -1,31 +1,29 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage} from "formik";
-import "../../pages/CurrentProjects/CurrentProjects.scss"
-import "./AddProject.scss"
+import "../../components/Card/Card.scss"
+// import "./AddProject.scss"
 import * as Yup from 'yup'
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 
-const AddProject = () => {
+const AddIdea = () => {
     let history = useHistory();
     const initialValues = {
         title: "",
-        materials: "",
-        progress: "",
+        bucketList: "bucketed"
         
     }
 
     const validationSchema = Yup.object().shape({
         title: Yup.string().min(3).max(25).required("You must input a name for your project"),
-        materials: Yup.string().required(),
-        progress: Yup.string().required()
+       
     })
 
     const onSubmit = (data) => {
         axios
-        .post("http://localhost:5500/current", data)
+        .post("http://localhost:5500/bucket-list", data)
         .then((response) => {
-            history.push("/current")
+            history.push("/bucket-list")
             console.log("IT WORKED")
         })
     }
@@ -40,13 +38,7 @@ const AddProject = () => {
                     <label>Project name: </label>
                     <Field id="titleInput" name="title" placeholder="Enter a title"/>
                     <ErrorMessage name="title" component="span"/>
-                    <label>Materials: </label>
-                    <Field id="fieldsInput" name="materials" placeholder="What will you need?"/>
-                    <ErrorMessage name="materials" component="span"/>
-                    <label>Progress: </label>
-                    <Field id="fieldsInput" name="progress" placeholder="What have you completed so far?"/>
-                    <ErrorMessage name="progress" component="span"/>
-                    <button type="submit">Add a new project</button>
+                    <button type="submit">Add a new idea</button>
                 </Form>
             </Formik>
         </div>
@@ -54,4 +46,4 @@ const AddProject = () => {
      );
 }
 
-export default AddProject;
+export default AddIdea;

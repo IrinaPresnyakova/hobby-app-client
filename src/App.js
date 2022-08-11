@@ -9,6 +9,7 @@ import SingleProject from "./pages/SingleProject/SingleProject";
 import ArchivedProjects from './pages/ArchivedProjects/ArchivedProjects'
 import SingleArchived from "./pages/SingleArchived/SingleArchived";
 import BucketListProjects from './pages/BucketList/BucketListProjects'
+import AddIdea from "./components/AddIdea/AddIdea";
 
 function App () {
  
@@ -23,6 +24,7 @@ function App () {
                   <Route path="/archive" component={ArchivedProjects} />
                   <Route path="/archive-view/:id" component={SingleArchived} />
                   <Route path="/bucket-list" component={BucketListProjects} />
+                  <Route path="/add-idea" component={AddIdea} />
               </Switch>
       </BrowserRouter>
     )
