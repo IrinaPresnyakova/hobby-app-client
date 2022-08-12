@@ -25,8 +25,9 @@ const ArchivedProjects = () => {
             <div className="small-cards-wrapper">
                 {listOfArchived.map((item, key) => {
                 return (
-                    <>
+                    
                         <div 
+                            key={key}
                             className="small-card" 
                             onClick={() => {
                                 history.push(`/archive-view/${item.id}`)
@@ -35,7 +36,7 @@ const ArchivedProjects = () => {
                             <div className="project__title" >Project: {item.title}</div>
                             
                         </div>  
-                    </>                                  
+                                                     
                 )                    
             })}
             </div>

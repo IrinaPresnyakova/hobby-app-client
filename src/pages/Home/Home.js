@@ -1,6 +1,7 @@
 import React from "react";
 import axios from 'axios';
 import { useEffect } from "react";
+import Button from "../../components/Button/Button";
 
 const Home = () => {
     // useEffect(() => {
@@ -11,8 +12,14 @@ const Home = () => {
     //     })
     // }, [])    
 
+    function handleClickHome() {
+        console.log("Home clicked");
+    }
     return(
         <div>
+            <Button buttonLabel="Home Page" handleClick={handleClickHome}/>
+
+
             <h1> HOME PAGE</h1>
             <p>Each of the following will lead to a corresponding page:</p>
             <a href="/current">
