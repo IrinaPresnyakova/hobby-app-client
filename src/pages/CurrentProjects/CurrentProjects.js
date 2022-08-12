@@ -4,6 +4,7 @@ import axios from "axios";
 import './CurrentProjects.scss'
 import '../../components/Card/Card.scss'
 
+
 const CurrentProjects = () => {
     const [listOfProjects, setListOfProjects] = useState([]);
     let history = useHistory();
@@ -25,9 +26,8 @@ const CurrentProjects = () => {
             </div>
             <div className="cards-wrapper">
                 {listOfProjects.map((item, key) => {
-                return (
-                    <>
-                        <div 
+                return (    
+                        <div key={key}
                             className="card" 
                             onClick={() => {
                                 history.push(`/projects/${item.id}`)
@@ -37,7 +37,7 @@ const CurrentProjects = () => {
                             <div className="project__detail">Materials: {item.materials}</div>
                             <div className="project__detail">Progress: {item.progress}</div>
                         </div>  
-                    </>                                  
+                                                     
                 )                    
             })}
             </div>

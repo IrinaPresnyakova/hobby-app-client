@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import axios from "axios";
 import '../CurrentProjects/CurrentProjects.scss';
-
+import Button from "../../components/Button/Button";
 
 const SingleArchived = () => {
     let { id } = useParams();
@@ -51,12 +51,9 @@ const SingleArchived = () => {
         <a href="/current"><h3 className="title"> Back to all current projects</h3></a>
         <div className="single-project-wrapper">
 
-            <button onClick={()=> {unarchiveProject(archProjectObject.id)}}>
-                Unarchive this project
-            </button> 
-            <button onClick={()=> {deleteProject(archProjectObject.id)}}>
-                Delete this project
-            </button>
+            <Button buttonLabel="Unarchive this project" handleClick={()=> {unarchiveProject(archProjectObject.id)}}/>
+            <Button buttonLabel="Delete this project" handleClick={()=> {deleteProject(archProjectObject.id)}}/>    
+            
             <div className="project__card card">
                 <div className="project__card--title">{archProjectObject.title}</div>
                 <div className="project__card--info">{archProjectObject.materials} </div>
