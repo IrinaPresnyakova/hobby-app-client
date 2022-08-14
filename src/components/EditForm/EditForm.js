@@ -13,49 +13,23 @@ const EditProject = (props) => {
     const [projectObject, setProjectObject] = useState ({});
 
     useEffect(() => {
-        // const getProject = () => {
             axios
                 .get(`http://localhost:5500/projects/${id}`)
                 .then((response) => {
                     setProjectObject(response.data); 
                     // console.log(response.data.title)
-                    const title = response.data.title;
-                    console.log(title);
             });
-        // }
     }, [])
 
-    // const handleChange = (e) => {
-    //     e.persist();
-    
-    //     let name = e.target.name;
-    //     let value = e.target.value;
+    const title = projectObject.title;
+    const materials = projectObject.materials;
+    // console.log(materials);
+    const progress = projectObject.progress;
 
-    //   };
-    const handleInputChange = (e) => {
-                // handleChange(e);
-                setProjectObject({...projectObject, [e.target.name]: e.target.value})
-            }
-            
-    const updateProject = (e) => {
-        // e.preventDefault();
-        axios
-            .patch(`http://localhost:5500/projects/${id}`, projectObject, {
-                "Content-type": "application/json"
-            })
-            .then((response) => {
-                history.push("/current")
-                console.log("This project was modified")
-            })
-
-            
-    }
-
-    const initialValues = {
-        title: "",
-        materials: "",
-        progress: "",
-        
+    const prefilledValues = {
+        title: title,
+        materials: materials,
+        progress: progress   
     }
 
     const validationSchema = Yup.object().shape({
@@ -63,25 +37,35 @@ const EditProject = (props) => {
         materials: Yup.string().required(),
         progress: Yup.string().required()
     })
-//data should be smth like e.target value?
 
-    // const onSubmit = (e) => {
-    //     axios
-    //     .patch("http://localhost:5500/projects/:id", e.target.value)
-    //     .then((response) => {
-    //         history.push("/current")
-    //         console.log("This project was modified")
-    //     })
-    // }
-   
+    const updateProject = (e) => {
+        // e.preventDefault();
+        console.log(e);
+        axios
+            .patch(`http://localhost:5500/projects/${id}`, e, 
+            // { //build an object in here e.target.value,
+            //     "Content-type": "application/json"
+            // }
+            )
+            .then((response) => {
+                // const updatedProject = {title: title}
+                // setProjectObject([...projectObject, title])
+                history.push("/current")
+                console.log("This project was modified")
+            })
+
+    }
+
 
     return ( 
         
         <div className="project-form">
             <Formik 
-                initialValues={initialValues} 
+                initialValues={prefilledValues} 
                 onSubmit={updateProject} 
-                validationSchema={validationSchema}>
+                validationSchema={validationSchema}
+                enableReinitialize={true}
+                >
                 <Form className="project project-field">
                     <label>Project name: </label>
                     <Field id="titleInput" name="title" placeholder="Enter a title"/>
