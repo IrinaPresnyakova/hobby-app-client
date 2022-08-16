@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory, Link } from "react-router-dom";
 import axios from "axios";
 import '../CurrentProjects/CurrentProjects.scss';
 
@@ -63,9 +63,9 @@ const SingleProject = () => {
         <>
         <a href="/current"><h3 className="title"> Back to all current projects</h3></a>
         <div className="single-project-wrapper">
-            <button>
-                Edit this project
-            </button>
+            <div className="button-wrapper">
+                <Link to={{pathname: `/edit-project/${projectObject.id}`}} className="add-new">Edit this project</Link>
+            </div>
             <button onClick={()=> {archiveProject(projectObject.id)}}>
                 Archive this project
             </button>
@@ -75,6 +75,7 @@ const SingleProject = () => {
             <div className="project__card card">
                 <div className="project__card--title">{projectObject.title}</div>
                 <div className="project__card--info">{projectObject.materials} </div>
+                <div className="project__card--info">{projectObject.progress} </div>
             </div>
             
             <div className="add-new">
