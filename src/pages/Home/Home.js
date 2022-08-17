@@ -1,27 +1,28 @@
 import React from "react";
 import axios from 'axios';
 import { useEffect } from "react";
+import { Link, useHistory } from "react-router-dom";
 import Button from "../../components/Button/Button";
 
 const Home = () => {
-    // useEffect(() => {
-    //     axios
-    //     .get("http://localhost:5500/current")
-    //     .then((response) => {
-    //         console.log(response);
-    //     })
-    // }, [])    
+ 
 
-    function handleClickHome() {
-        console.log("Home clicked");
-    }
     return(
         <div>
-            <Button buttonLabel="Home Page" handleClick={handleClickHome}/>
+            <div className="button-wrapper">
+                <Link to="/auth" className="add-new">
+                    <button>Sign up</button>
+                </Link>
+            </div>
+            <div className="button-wrapper">
+                <Link to="/auth/login" className="add-new">
+                    <button>Log in</button>
+                </Link>
+            </div>
 
-
-            <h1> HOME PAGE</h1>
-            <p>Each of the following will lead to a corresponding page:</p>
+    
+            <h1> Welcome to your hobby projects management app!</h1>
+          
             <a href="/current">
                 <h2 >Current projects</h2>
             </a>

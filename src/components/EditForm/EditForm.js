@@ -12,18 +12,15 @@ const EditProject = () => {
     let { id } = useParams();
     const [projectObject, setProjectObject] = useState ({});
 
-
     //rendering old data in the form on load
     useEffect(() => {
             axios
                 .get(`http://localhost:5500/projects/${id}`)
                 .then((response) => {
                     setProjectObject(response.data); 
-                    // console.log(response.data.title)
             });
     }, [])
 
-    console.log("initial render", projectObject);
     const { title, materials, progress } = projectObject;
 
     const prefilledValues = {
@@ -38,37 +35,24 @@ const EditProject = () => {
         progress: Yup.string().required()
     })
 
-    const newProjectObject = {...projectObject}
-    const handleOnChange = (event) => {
-        event.persist();
-        let name = event.target.name;
-        let value = event.target.value; 
-        setProjectObject({...projectObject, [event.target.name]: event.target.value})
-        // console.log("THIS IS NEW", newProjectObject);
-        // newProjectObject[event.target.id] = event.target.value
-        // setProjectObject(newProjectObject)
-        console.log("Form::onChange", projectObject);
-    }
+    // const handleOnChange = (event) => {
+    //     event.persist();
+        // let name = event.target.name;
+        // let value = event.target.value; 
+        // setProjectObject({...projectObject, [event.target.name]: event.target.value})
+    //     console.log("Form::onChange", projectObject);
+    // }
 
-    const updateProject = (event) => {
-        // const newPojectObject = {newPojectObject};
-        console.log("on updateProject:", event);
+    const updateProject = (data) => {
         axios
-            .patch(`http://localhost:5500/projects/${id}`, {projectObject}, 
-            { //build an object in here e.target.value,
-                "Content-type": "application/json"
-            }
-            )
+            .patch(`http://localhost:5500/edit-project/${id}`, data)
             .then((response) => {
-                // const updatedProject = {title: title}
-                setProjectObject(response.data)
+                console.log(data);
+                // setProjectObject(response.data)
                 history.push("/current")
                 console.log("This project was modified")
             })
-
-    }
-
-   
+        }
 
     return ( 
         
@@ -78,10 +62,9 @@ const EditProject = () => {
                 onSubmit={updateProject} 
                 validationSchema={validationSchema}
                 enableReinitialize={true}
-                
                 >
                 <Form 
-                    onChange={handleOnChange} 
+                    // onChange={handleOnChange} 
                     className="project project-field">
                     <label>Project name: </label>
                     <Field id="titleInput" name="title" placeholder="Enter a title"/>

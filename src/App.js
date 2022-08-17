@@ -12,6 +12,8 @@ import BucketListProjects from './pages/BucketList/BucketListProjects'
 import AddIdea from "./components/AddIdea/AddIdea";
 import SingleBucketList from "./pages/SingleBucketList/SingleBucketList";
 import EditForm from "./components/EditForm/EditForm";
+import Signup from "./components/Signup/Signup";
+import Login from "./components/Login/Login";
 // import AddEdit from "./components/AddEditForm/AddEditForm";
 function App () {
  
@@ -29,6 +31,8 @@ function App () {
                   <Route path="/add-idea" component={AddIdea} />
                   <Route path="/bucket-list-view/:id" component={SingleBucketList} />
                   <Route path="/edit-project/:id" component={EditForm} />
+                  <Route path="/auth" exact component={Signup} /> 
+                  <Route path="/auth/login" exact component={Login} /> 
                   {/* <Route path="/add" component={AddEdit} />
                   <Route path="/edit/:id" component={AddEdit} /> */}
                   {/* <Route /> */}
