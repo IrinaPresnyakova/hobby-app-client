@@ -1,11 +1,11 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage} from "formik";
-import "../../pages/CurrentProjects/CurrentProjects.scss"
-import "./AddProject.scss"
+
 import * as Yup from 'yup'
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-
+import "../../pages/CurrentProjects/CurrentProjects.scss"
+import "./AddProject.scss"
 const AddProject = () => {
     let history = useHistory();
     const initialValues = {

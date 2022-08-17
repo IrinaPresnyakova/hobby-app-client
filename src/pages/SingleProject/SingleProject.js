@@ -64,7 +64,8 @@ const SingleProject = () => {
         <a href="/current"><h3 className="title"> Back to all current projects</h3></a>
         <div className="single-project-wrapper">
             <div className="button-wrapper">
-                <Link to={{pathname: `/edit-project/${projectObject.id}`}} className="add-new">Edit this project</Link>
+                <Link to={{pathname: `/edit-project/${projectObject.id}`}} className="add-new">
+                    <button>Edit this project</button></Link>
             </div>
             <button onClick={()=> {archiveProject(projectObject.id)}}>
                 Archive this project
