@@ -28,11 +28,23 @@ const SingleProject = () => {
 
     const addNote = () => {
         axios
-            .post("http://localhost:5500/notes", {noteText: newNote, ProjectId:id})
+            .post("http://localhost:5500/notes", {
+                noteText: newNote, 
+                ProjectId:id
+            }, 
+            {headers: {
+                tokenForAccess: localStorage.getItem("tokenForAccess")
+            }}
+            )
             .then((response) => {
-                const noteToAdd = {noteText: newNote};
-                setNotes([...notes, noteToAdd]);
-                setNewNote("");
+                if (response.data.error) {
+                    console.log(response.data);
+                } else {
+                    const noteToAdd = {noteText: newNote};
+                    setNotes([...notes, noteToAdd]);
+                    setNewNote("");
+                }
+                
             })
         }
 

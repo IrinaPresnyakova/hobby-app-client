@@ -14,30 +14,35 @@ import SingleBucketList from "./pages/SingleBucketList/SingleBucketList";
 import EditForm from "./components/EditForm/EditForm";
 import Signup from "./components/Signup/Signup";
 import Login from "./components/Login/Login";
-// import AddEdit from "./components/AddEditForm/AddEditForm";
+import { AuthContext } from "./utils/AuthContext";
+import { useState } from 'react';
+
 function App () {
- 
+    
+    // const [loginState, setLoginState] = useState(false)
+
     return(
-      <BrowserRouter>
-          <Header />
-              <Switch>            
-                  <Route path="/" exact component={Home} /> 
-                  <Route path="/current" component={CurrentProjects} />  
-                  <Route path="/projects/:id" component={SingleProject} />
-                  <Route path="/add-project" component={AddProject}/>          
-                  <Route path="/archive" component={ArchivedProjects} />
-                  <Route path="/archive-view/:id" component={SingleArchived} />
-                  <Route path="/bucket-list" component={BucketListProjects} />
-                  <Route path="/add-idea" component={AddIdea} />
-                  <Route path="/bucket-list-view/:id" component={SingleBucketList} />
-                  <Route path="/edit-project/:id" component={EditForm} />
-                  <Route path="/auth" exact component={Signup} /> 
-                  <Route path="/auth/login" exact component={Login} /> 
-                  {/* <Route path="/add" component={AddEdit} />
-                  <Route path="/edit/:id" component={AddEdit} /> */}
-                  {/* <Route /> */}
-              </Switch>
-      </BrowserRouter>
+        // <AuthContext.Provider value={{ loginState, setLoginState }}>
+            <BrowserRouter>
+                <Header />
+                <Switch>            
+                    <Route path="/" exact component={Home} /> 
+                    <Route path="/current" component={CurrentProjects} />  
+                    <Route path="/projects/:id" component={SingleProject} />
+                    <Route path="/add-project" component={AddProject}/>          
+                    <Route path="/archive" component={ArchivedProjects} />
+                    <Route path="/archive-view/:id" component={SingleArchived} />
+                    <Route path="/bucket-list" component={BucketListProjects} />
+                    <Route path="/add-idea" component={AddIdea} />
+                    <Route path="/bucket-list-view/:id" component={SingleBucketList} />
+                    <Route path="/edit-project/:id" component={EditForm} />
+                    <Route path="/auth" exact component={Signup} /> 
+                    <Route path="/auth/login" exact component={Login} /> 
+
+                    {/* <Route /> */}
+                </Switch>
+            </BrowserRouter>
+        // </AuthContext.Provider>
     )
 }
 

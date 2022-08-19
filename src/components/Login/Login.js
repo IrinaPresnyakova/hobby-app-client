@@ -1,17 +1,29 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react';
 import axios from 'axios';
+import { useHistory} from "react-router-dom";
+import { AuthContext } from '../../utils/AuthContext'
 
 function Login() {
          //we need state to hold values of the username and password we input
         const [username, setUsername] = useState("");
         const [password, setPassword] = useState("");
-        
+        const [loginState, setLoginState] = useState(false)
+        // const {setLoginState} = useContext(AuthContext);
+
+        let history = useHistory();
+
         const login = () => {
-            const loginData = { username: username, password: password };
+            const data = { username: username, password: password };
             axios   
-                .post("http://localhost:5500/auth/login", loginData)
+                .post("http://localhost:5500/auth/login", data)
                 .then((response) => {
-                    console.log(response.data);
+                    if (response.data.error) {
+                        alert(response.data.error)
+                    } else {
+                        localStorage.setItem("tokenForAccess", response.data);
+                        setLoginState(true);
+                        history.push('/')
+                    }
                 });
             };
   return (
