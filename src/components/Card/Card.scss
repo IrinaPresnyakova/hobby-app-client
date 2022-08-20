@@ -1,5 +1,6 @@
 @use './../../styles/partials/mixins' as *;
 @use './../../styles/partials/colors' as *;
+@use './../../styles/partials/fonts' as *;
 
 .cards-wrapper {
     display: flex;
@@ -12,24 +13,43 @@
     }
   
   }
-  
+
   .card {
-    border: .0625rem solid $dark-byzantium;
-    background-color: $tea-green;
-    border-radius: .25rem;
-    margin: 1rem;
+    @include textRegular(1.5rem, 2rem);
     padding: 1rem;
-    height: 15rem;
-    width: 12rem;
+    z-index: 1;
+    background-color: aliceblue;
+    background-image:
+      linear-gradient(180deg, aliceblue 3rem, #F0A4A4 calc(3rem), #F0A4A4 calc(3rem + 2px), transparent 1px),
+      repeating-linear-gradient(0deg, transparent, transparent 1.5rem, #DDD 1px, #DDD calc(1.5rem + 1px));
+    box-shadow: 1px 1px 3px rgba(0,0,0,.25);
+    height: 14rem;
+    width: 400px;
+    margin: 2rem;
   
-    font-size: 1.5rem;
-    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    @include tablet {
-      height: 20rem;
-      width: 17rem
-    }
-  
+    // margin: auto;
+    // position: relative;
+    // top: 50%;
+    // transform: translateY(-50%);
   }
+  
+  // .card {
+  //   border: .0625rem solid $dark-byzantium;
+  //   background-color: $tea-green;
+  //   border-radius: .25rem;
+  //   margin: 1rem;
+  //   padding: 1rem;
+  //   height: 15rem;
+  //   width: 12rem;
+  
+  //   font-size: 1.5rem;
+  //   font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  //   @include tablet {
+  //     height: 20rem;
+  //     width: 17rem
+  //   }
+  
+  // }
 
   .small-cards-wrapper {
     display: flex;
@@ -52,7 +72,7 @@
     width: 12rem;
   
     font-size: 1.5rem;
-    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+   
     @include tablet {
       height: 20rem;
       width: 17rem

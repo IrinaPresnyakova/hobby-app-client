@@ -3,6 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 import './CurrentProjects.scss'
 import '../../components/Card/Card.scss'
+import '../../styles/partials/_typekit.scss'
 
 
 const CurrentProjects = () => {
@@ -19,13 +20,8 @@ const CurrentProjects = () => {
     
     return ( 
         <>
-            <h1>Current projects</h1>
-            <a href="/archive"><h1 className="title">Archive</h1></a>
-            <div className="button-wrapper">
-                <Link to="/add-project" className="add-new">
-                    <button>Add a new project</button>
-                </Link>
-            </div>
+            <h1 className="title title-light">Current projects</h1>
+            
             <div className="cards-wrapper">
                 {listOfProjects.map((item, key) => {
                 return (    
@@ -42,6 +38,12 @@ const CurrentProjects = () => {
                                                      
                 )                    
             })}
+            </div>
+            <a href="/archive"><h1 className="title">Archive</h1></a>
+            <div className="button-wrapper">
+                <Link to="/add-project" className="add-new">
+                    <button className="button-font"> Add a new project</button>
+                </Link>
             </div>
         </>
      );

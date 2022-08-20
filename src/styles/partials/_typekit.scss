@@ -1,0 +1,25 @@
+@use './colors' as *;
+@use './fonts' as *;
+@use './mixins' as *;
+
+
+.header-title {
+    text-align: left;
+    @include textTypewriter (2rem, 2rem);
+    @include tablet {
+         @include textTypewriter (4rem, 3rem);
+    } 
+}
+
+.title {
+    @include textRegular (2rem, 2rem);
+    text-align: center;
+    @include tablet {
+        @include textRegular (3rem, 2rem);
+
+    }
+}
+
+.button-font {
+    @include textTypewriter (1rem, 1rem);
+}

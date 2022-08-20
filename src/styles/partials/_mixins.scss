@@ -1,3 +1,7 @@
+@use './colors' as *;
+@use './fonts' as *;
+
+
 @mixin tablet {
     @media screen and (min-width: 768px) {
         @content;
@@ -14,4 +18,30 @@
     @media screen and (min-width: 1280px) {
         @content;
   }
+}
+
+
+
+@mixin textRegular($fontSize, $lineHeight) {
+  font-family:'Courier Prime';
+  font-weight: 400;
+  font-size: $fontSize;
+  line-height: $lineHeight;
+  color: $primary-text;    
+}
+
+@mixin textBold($fontSize, $lineHeight) {
+  font-family: 'Courier Prime';
+  font-weight: 600;
+  font-size: $fontSize;
+  line-height: $lineHeight;   
+  color: $primary-text;   
+}
+
+@mixin textTypewriter($fontSize, $lineHeight) {
+  font-family: 'Special Elite';
+  font-weight: 600;
+  font-size: $fontSize;
+  line-height: $lineHeight;   
+  color: $primary-text;   
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
-// import './App.css';
+import './App.scss';
 import Header from "./components/Header/Header";
 import Home from './pages/Home/Home';
 import CurrentProjects from './pages/CurrentProjects/CurrentProjects';

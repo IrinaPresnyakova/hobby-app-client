@@ -4,6 +4,9 @@ import { useEffect, useState  } from "react";
 import { Link, useHistory} from "react-router-dom";
 import Button from "../../components/Button/Button";
 import { AuthContext } from "../../utils/AuthContext";
+import './Home.scss'
+import SignUpIcon from "../../assets/icons/signup.svg"
+import '../../styles/partials/_typekit.scss'
 
 
 const Home = () => {
@@ -26,32 +29,31 @@ const Home = () => {
     return(
     <div>
         <AuthContext.Provider value={{ loginState, setLoginState }}>
-            
-                { !loginState && ( 
-                    <div className="auth-container">
-                        <div className="button-wrapper">
-                            <Link to="/auth" className="add-new">
-                                <button>Sign up</button>
-                            </Link>
-                        </div>
-                        <div className="button-wrapper">
-                            <Link to="/auth/login" className="add-new">
-                                <button>Log in</button>
-                            </Link>
-                        </div>
+            { !loginState && ( 
+                <div className="auth-container">
+                    <div className="button-wrapper">
+                        <Link to="/auth" className="add-new">
+                            <button className="button-font">Sign up</button>
+                        </Link>
                     </div>
-                    )
-                }
-                 </AuthContext.Provider>
-
-        
-                <h1> Welcome to your hobby projects management app!</h1>
+                    <div className="button-wrapper">
+                        <Link to="/auth/login" className="add-new">
+                            <button className="button-font">Log in</button>
+                        </Link>
+                    </div>
+                </div>
+                )
+            }
+        </AuthContext.Provider>
+        <div className="main">
             
-                <a href="/current"><h2 >Current projects</h2></a>
+            <div className="title-wrapper">
+                <a href="/current"><h2 className="title">Current projects</h2></a>
                 <a href="/archive"><h2 className="title">Archive</h2></a>
                 <a href="/bucket-list"><h2 className="title">Bucket List</h2></a>
             </div>
-       
+        </div>              
+    </div>
     )
 }
 
