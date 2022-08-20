@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useHistory, Link } from "react-router-dom";
 import axios from "axios";
 import '../CurrentProjects/CurrentProjects.scss';
-
+import { AuthContext } from "../../utils/AuthContext";
 
 const SingleProject = () => {
     let { id } = useParams();
@@ -47,10 +47,7 @@ const SingleProject = () => {
                 
             })
         }
-
-    const editProject = (id, editedProject) => {
-        
-    }    
+   
 
     const archiveProject = (id) => {
         axios
@@ -70,6 +67,15 @@ const SingleProject = () => {
                 history.push("/current")
             })
         }
+
+        const deleteNote = (noteId) => {
+            axios
+                .delete(`http://localhost:5500/projects/${noteId}`)
+                .then((response) => {
+                    alert("This note was deleted!")
+                    history.push(`http://localhost:5500/projects/${id}`)
+                })
+        }
     
     return ( 
         <>
@@ -77,7 +83,8 @@ const SingleProject = () => {
         <div className="single-project-wrapper">
             <div className="button-wrapper">
                 <Link to={{pathname: `/edit-project/${projectObject.id}`}} className="add-new">
-                    <button>Edit this project</button></Link>
+                    <button>Edit this project</button>
+                </Link>
             </div>
             <button onClick={()=> {archiveProject(projectObject.id)}}>
                 Archive this project
@@ -99,16 +106,21 @@ const SingleProject = () => {
                     autoComplete="off" 
                     onChange={(event) => {setNewNote(event.target.value)}}
                     value={newNote}/>
-                <button onClick={addNote}>Add note</button>
+                <button onClick={addNote}>Add a note</button>
             </div>
                 
             <div className="notes-title add-new" >Here are your notes:</div>
                 {notes.map((note, key) => {
                     return (
-                        <div key={key} className="card">{note.noteText}</div>
+                        <div key={key} className="card">
+                            <div> 
+                                {note.noteText}
+                            </div>
+                            <button className="button-font" onClick={deleteNote}>Delete</button>
+                        </div>                      
                     )})
                 }
-            <div className="note"></div>
+            
         </div>
         </>
         
