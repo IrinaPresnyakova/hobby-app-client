@@ -1,13 +1,14 @@
 import React, { useEffect, useState }  from "react";
 import './Header.scss'
+import '../../styles/partials/_typekit.scss'
 
 
 
 function Header() {
     return (
         <div className="header-container">
-            <p>About this project | Contact | Log in</p>
-            <a href="/"><h2 className="title"> HobScotch</h2></a>
+            
+            <a href="/"><h2 className="header-title"> Hobby Tracker</h2></a>
             
         </div>
         

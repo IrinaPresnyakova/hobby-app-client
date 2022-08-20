@@ -1,0 +1,20 @@
+@use '../src/styles/partials/mixins' as *;
+body {
+    // background-image: url("../public/images/freddy-castro-u3ajSXhZM_U-unsplash.jpg");//coffee cup on a desk
+    // background-image: url("../public/images/brooke-lark-tpCaZTXHfXM-unsplash\ \(1\).jpg");// whitish desk, flowers
+    // background-image: url("../public/images/andyone--WW8jBak7bo-unsplash.jpg");// camera in the corner
+    // background-image: url("../public/images/jon-moore-5fIoyoKlz7A-unsplash.jpg");//dark wood
+    // background-image: url("../public/images/anshu-a-M8SjaCyiRak-unsplash.jpg");//
+    background-image: url("../public/images/retrosupply-jLwVAUtLOAQ-unsplash\ \(2\).jpg");//
+    // background-image: url("../public/images/bernard-hermant-XFCei-F4mjg-unsplash.jpg");//
+    // background-image: url("../public/images/joanna-kosinska-RE-8WswW95o-unsplash.jpg");//
+
+    min-width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    background-position: 25%;
+    @include desktop {
+        background-position: top 70%;
+    }
+}
