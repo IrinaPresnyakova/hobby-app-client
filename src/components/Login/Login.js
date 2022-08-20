@@ -20,8 +20,8 @@ function Login() {
                     if (response.data.error) {
                         alert(response.data.error)
                     } else {
-                        localStorage.setItem("tokenForAccess", response.data);
-                        setLoginState(true);
+                        localStorage.setItem("tokenForAccess", response.data.token);
+                        setLoginState({username: response.data.username, id: response.data.id, status: true});
                         history.push('/')
                     }
                 });

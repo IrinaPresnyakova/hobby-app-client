@@ -11,25 +11,31 @@ import '../../styles/partials/_typekit.scss'
 
 const Home = () => {
  
-    const [loginState, setLoginState] = useState(false)
+    const [loginState, setLoginState] = useState({username:"", id: "", status: false})
 
     useEffect(() => {
-        axios.get("http://localhost:5500/auth/auth", {
+        axios.get("http://localhost:5500/auth/verify", {
             headers: {
                 tokenForAccess: localStorage.getItem("tokenForAccess"),
         }}).then ((response) => {
             if(response.data.error) {
-                setLoginState(false)
+                setLoginState({ ...loginState, status: false })
             } else {
-                setLoginState(true) 
+                setLoginState({username: response.data.username, id: response.data.id, status: true}) 
             }
         });     
     }, [])
 
+    const logout = () => {
+        localStorage.removeItem("tokenForAccess");
+        setLoginState({username: "", id: 0, status: false});
+    };
+    
     return(
     <div>
+        <h1 className="title-light">{loginState.username}</h1>
         <AuthContext.Provider value={{ loginState, setLoginState }}>
-            { !loginState && ( 
+            { !loginState.status ? ( 
                 <div className="auth-container">
                     <div className="button-wrapper">
                         <Link to="/auth" className="add-new">
@@ -42,8 +48,9 @@ const Home = () => {
                         </Link>
                     </div>
                 </div>
-                )
-            }
+                ) : (
+                    <button onClick={logout}>Log out</button>
+                )}
         </AuthContext.Provider>
         <div className="main">
             
