@@ -31,11 +31,3 @@ button {
 }
 }
 
-.auth-container {
-    display: flex;
-    justify-content: space-evenly;
-    @include tablet {
-        width: 60%;
-        justify-content: right;
-    }
-}
