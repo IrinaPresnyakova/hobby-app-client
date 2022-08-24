@@ -2,7 +2,14 @@
 @use './../../styles/partials/colors' as *;
 @use './../../styles/partials/fonts' as *;
 
-.main {
+// .home-main {
+//     position: relative;
+// }
+body {
+    position: relative;
+}
+
+.contents {
     padding-top: 2rem;
     display: flex;
     flex-direction: column;
@@ -15,16 +22,20 @@
     
 }
 
-// .title {
-//     @include textRegular (2rem, 2rem);
-//     text-align: center;
-//     @include tablet {
-//         @include textRegular (3rem, 2rem);
 
-//     }
-    
-// }
 
-.icon {
-    background-color: rgb(240, 248, 255, 0.8);
+.auth-container {
+    display: flex;
+    justify-content: space-evenly;
+    @include tablet {
+        flex-direction: column;
+        position: absolute;
+        top: 0;
+        right: 5%;
+
+    }
 }
+
+// .icon {
+//     background-color: rgb(240, 248, 255, 0.8);
+// }

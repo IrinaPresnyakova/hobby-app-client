@@ -34,8 +34,7 @@ const CurrentProjects = () => {
                             <div className="project__title">Project: {item.title} </div>
                             <div className="project__detail">Materials: {item.materials}</div>
                             <div className="project__detail">Progress: {item.progress}</div>
-                        </div>  
-                                                     
+                        </div>                                     
                 )                    
             })}
             </div>

@@ -23,3 +23,9 @@
 .button-font {
     @include textTypewriter (1rem, 1rem);
 }
+
+.title-light {
+    @include textTypewriter (2rem, 2rem);
+    color: white;
+
+  }
