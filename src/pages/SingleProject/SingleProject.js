@@ -5,13 +5,21 @@ import '../CurrentProjects/CurrentProjects.scss';
 import { AuthContext } from "../../utils/AuthContext";
 import { Image } from 'cloudinary-react';
 import './SingleProject.scss'
-import images from './api-mock.json'
+import {AdvancedImage} from '@cloudinary/react';
+import {Cloudinary} from "@cloudinary/url-gen";
+import {Transformation} from "@cloudinary/url-gen";
+
+import {image} from "@cloudinary/url-gen/qualifiers/source";
+import {Position} from "@cloudinary/url-gen/qualifiers/position";
+import {compass} from "@cloudinary/url-gen/qualifiers/gravity";
+import {focusOn} from "@cloudinary/url-gen/qualifiers/gravity";
+import {FocusOn} from "@cloudinary/url-gen/qualifiers/focusOn";
 
 
 const SingleProject = () => {
     let { id } = useParams();
     
-    const [projectObject, setProjectObject] = useState ({});
+    const [projectObject, setProjectObject] = useState ("");
     const [notes, setNotes] = useState ([]);
     const [newNote, setNewNote] = useState ("");
 
@@ -80,26 +88,62 @@ const SingleProject = () => {
                     history.push(`http://localhost:5500/projects/${id}`)
                 })
         }
-        
-//Images handling with Cloudinary
-        const [imageList, setImageList] = useState(images.resources)
-        
-        const [image, setImage] = useState("")
-        // const uploadImage = () => {
-        //     // console.log(files[0]);
-        //     const formData = new FormData()
-        //     formData.append("file", image)
-        //     formData.append("upload_preset", "ctc3o5wg")
-        
-        //     axios
-        //         .post("https://api.cloudinary.com/v1_1/dcfinwckd/image/upload", formData)
-        //         .then((response) => {
-        //             console.log(response);
-        //         })
-        // };
 
+// IMAGES UPLOAD:
 
-        console.log(imageList); //works
+        const [file, setFile] = useState("");
+        const [imagePreview, setImagePreview] = useState("")
+        const [uploadedImage, setUploadedImage] = useState("")
+
+        const previewFiles = (file) => {
+            const reader = new FileReader()
+            reader.readAsDataURL(file)
+            reader.onloadend = () => {
+                setImagePreview (reader.result)
+            }
+        }
+
+        const handleChange = (e) => {
+            const file = e.target.files[0];
+            previewFiles(file)
+        }
+
+        const handleSubmit = async (e) => {
+            e.preventDefault();
+            const response = await axios.post("http://localhost:5500/images", {
+                image: imagePreview
+            }).then((response) => {
+                console.log(response.data);
+                const newImage = response.data.public_id
+                setUploadedImage(newImage)
+            })
+        }
+
+        // Create and configure your Cloudinary instance.
+            const cld = new Cloudinary({
+                cloud: {
+                cloudName: 'dcfinwckd'
+                }
+            }); 
+
+            const myImage = cld.image(uploadedImage);
+
+// IMAGES RENDERING: 
+
+            const [imageIds, setImageIds] = useState("")
+
+            const loadImages = async () => {
+                    axios.get("http://localhost:5500/images")
+                    .then((response) => {
+                        console.log(response.data);
+                        setImageIds(response.data)
+                    })
+            }
+
+            useEffect(() => {
+                loadImages()
+            }, [])
+
     return ( 
         <>
         <a href="/current"><h3 className="title"> Back to all current projects</h3></a>
@@ -120,26 +164,39 @@ const SingleProject = () => {
                 <div className="project__card--info">{projectObject.materials} </div>
                 <div className="project__card--info">{projectObject.progress} </div>
             </div>
-            {/* this is where picture upload will happen */}
-            <div className="gallery">
-                <div className="title-light">Here are your pictures:</div>
-                <div className="gallery__wrapper">         
-                    {imageList.map((image, key) => {  
-                        return (
-                            <div className="gallery__card" key={key}>
-                                <img className="image" src={image.url} alt={image.public_id}></img>
-                            </div>
-                        )
-                    })}
-                </div>
-                <div className="title-light">Add more pictures? </div>
+
+            {/* UPLOAD */}
+            <div className="title-light">Add more pictures? </div>
+            <form onSubmit={e => handleSubmit(e)}>
+                <label htmlFor="fileInput">You can add pictures here:</label>
                 <input 
                     type="file"
-                    onChange={(event) => {
-                        setImage(event.target.files[0])
-                    }}/>
-                {/* <button onClick={uploadImage} className="button-font">Upload image</button> */}
+                    id="fileInput"
+                    onChange={e => handleChange(e)}
+                    required/>
+
+                {imagePreview && (
+                    <img src={imagePreview} alt="selected" style={{height: '10rem'}}/>
+                )}
+                
+                <button type="submit" className="button-font">Upload image</button>
+            </form>
+
+            {/* RENDER */}
+            <div className="gallery">
+                {imageIds && imageIds.map((imageId, key) => {
+                    return (
+                        <Image 
+                            key={key}
+                            cloudName="dcfinwckd"
+                            public_id={imageId}
+                            width="300"/>
+                        )    
+                })}
             </div>
+
+
+
             <div className="add-new">
                 <div className="title-light">Add a new note</div>
                 <input 
