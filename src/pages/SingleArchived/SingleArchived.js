@@ -47,13 +47,13 @@ const SingleArchived = () => {
 
     return ( 
         <>
-        <a href="/archive"><h3 className="title"> Back to all archived projects</h3></a>
-        <a href="/current"><h3 className="title"> Back to all current projects</h3></a>
         <div className="single-project-wrapper">
-
-            <Button buttonLabel="Unarchive this project" handleClick={()=> {unarchiveProject(archProjectObject.id)}}/>
-            <Button buttonLabel="Delete this project" handleClick={()=> {deleteProject(archProjectObject.id)}}/>    
-            
+            <div className="project-manipulation-btns">
+                <Button buttonLabel="Unarchive this project" handleClick={()=> {unarchiveProject(archProjectObject.id)}}/>
+                <Button buttonLabel="Delete this project" handleClick={()=> {deleteProject(archProjectObject.id)}}/>    
+          
+            </div>
+           
             <div className="project__card card">
                 <div className="project__card--title">{archProjectObject.title}</div>
                 <div className="project__card--info">{archProjectObject.materials} </div>
@@ -61,10 +61,10 @@ const SingleArchived = () => {
             <div className="notes-title add-new" >Here are your notes:</div>
                 {notes.map((note, key) => {
                     return (
-                        <div key={key} className="card">{note.noteText}</div>
+                        <div key={key} className="note">{note.noteText}</div>
                     )})
                 }
-            <div className="note"></div>
+            
         </div>
         </>
         

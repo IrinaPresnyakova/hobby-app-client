@@ -1,5 +1,6 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage} from "formik";
+import '../Login/Login.scss'
 
 import * as Yup from 'yup'
 import axios from "axios";
@@ -33,23 +34,31 @@ const AddProject = () => {
     
 
     return ( 
-        
-        <div className="project-form">
-            <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
-                <Form className="project project-field">
-                    <label>Project name: </label>
-                    <Field id="titleInput" name="title" placeholder="Enter a title"/>
-                    <ErrorMessage name="title" component="span"/>
-                    <label>Materials: </label>
-                    <Field id="fieldsInput" name="materials" placeholder="What will you need?"/>
-                    <ErrorMessage name="materials" component="span"/>
-                    <label>Progress: </label>
-                    <Field id="fieldsInput" name="progress" placeholder="What have you completed so far?"/>
-                    <ErrorMessage name="progress" component="span"/>
-                    <button type="submit">Add a new project</button>
-                </Form>
-            </Formik>
+        <div className="contents">
+            <div className="input">
+                <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
+                    <Form className="input-formik">
+                        <label className="aux-text">Project name: </label>
+                         <ErrorMessage name="title" component="span"/>
+                        <Field className="input__field" id="titleInput" name="title" placeholder="Enter a title"/>
+                       
+                        <label className="aux-text">Materials: </label>
+                        <ErrorMessage name="materials" component="span"/>
+                        <Field className="input__field" id="fieldsInput" name="materials" placeholder="What will you need?"/>
+                        
+                        <label className="aux-text">Progress: </label>
+                        <ErrorMessage name="progress" component="span"/>
+                        <Field className="input__field" id="fieldsInput" name="progress" placeholder="What have you completed so far?"/>
+                       
+                        <div className="button-wrapper">
+                            <button type="submit">Add a new project</button>
+                        </div>
+                        
+                    </Form>
+                </Formik>
+            </div>
         </div>
+            
         
      );
 }

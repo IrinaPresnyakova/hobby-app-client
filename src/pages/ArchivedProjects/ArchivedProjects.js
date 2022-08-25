@@ -1,8 +1,8 @@
 import React, { useEffect, useState }  from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
-// import './ArchivedProjects.scss'
-// import
+import '../../components/Card/Card.scss'
+
 
 const ArchivedProjects = () => {
     const [listOfArchived, setListOfArchived] = useState([]);
@@ -19,8 +19,8 @@ const ArchivedProjects = () => {
     
     return ( 
         <>
-            <h1>Archived projects</h1>
-            <h2>Click on a project to view details</h2>
+            <h1 className="title title-light">Archived projects</h1>
+            <h2 className="aux-text">Click on a project to view details</h2>
            
             <div className="small-cards-wrapper">
                 {listOfArchived.map((item, key) => {
@@ -28,7 +28,7 @@ const ArchivedProjects = () => {
                     
                         <div 
                             key={key}
-                            className="small-card" 
+                            className="card" 
                             onClick={() => {
                                 history.push(`/archive-view/${item.id}`)
                             }

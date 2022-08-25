@@ -3,8 +3,8 @@
 @use './mixins' as *;
 
 
-.header-title {
-    text-align: left;
+.header__title {
+    // text-align: left;
     @include textTypewriter (2rem, 2rem);
     @include tablet {
          @include textTypewriter (4rem, 3rem);
@@ -25,7 +25,15 @@
 }
 
 .title-light {
-    @include textTypewriter (2rem, 2rem);
+    text-align: center;
+    @include textTypewriter (2.5rem, 2rem);
     color: white;
-
+    @include tablet {
+        @include textTypewriter (3rem, 2.5rem);
+        color: white;
+    }
   }
+
+ .aux-text {
+    @include textRegular (1rem, 1rem);
+ } 

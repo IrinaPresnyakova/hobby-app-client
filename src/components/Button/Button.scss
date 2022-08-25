@@ -3,6 +3,9 @@
 @use '../../styles/partials/_typekit.scss' as *;
 
 .button-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 1rem 0;
     width: 100%;
     @include tablet {
@@ -10,6 +13,21 @@
         padding: 0;        
     }
 }
+
+.buttons-container {
+    display: flex;
+    justify-content: space-evenly;
+    @include tablet {
+        flex-direction: row;
+        position: absolute;
+        top: 0%;
+        right: 0%;
+        // margin: 0;
+        // padding: 0;
+
+    }
+}
+
 
 button {
     @include textTypewriter (1rem, 1rem);
@@ -24,10 +42,19 @@ button {
     border: none;
     cursor: pointer;
     @include tablet {
-        // width: 65%;
+        
     }
     @include desktop {
 
 }
 }
 
+.project-manipulation-btns {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    flex-direction: column;
+    @include tablet {
+        flex-direction: row;
+    }
+}

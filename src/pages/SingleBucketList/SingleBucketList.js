@@ -52,26 +52,21 @@ const SingleBucketList = () => {
     return ( 
         <>
         
-        <a href="/bucket-list"><h3 className="title"> Back to all bucket list projects</h3></a>
-        <a href="/current"><h3 className="title"> Back to all current projects</h3></a>
+        <a href="/bucket-list"><h3 className="title title-light">Bucket list</h3></a>
+        <a href="/current"><h3 className="title title-light">Current projects</h3></a>
         <div className="single-project-wrapper">
 
+            
+            <div className="project__card card">
+                <div className="project__card--title">{bucketProjectObject.title}</div>
+            </div>    
             <button onClick={()=> {unbucketProject(bucketProjectObject.id)}}>
                 Move to current
             </button> 
             <button onClick={()=> {deleteProject(bucketProjectObject.id)}}>
                 Delete this project
             </button>
-            <div className="project__card card">
-                <div className="project__card--title">{bucketProjectObject.title}</div>
-            </div>    
-            <div className="notes-title add-new" >Here are your notes:</div>
-                {notes.map((note, key) => {
-                    return (
-                        <div key={key} className="card">{note.noteText}</div>
-                    )})
-                }
-            <div className="note"></div>
+            
         </div>
         </>
         

@@ -9,12 +9,6 @@ import {AdvancedImage} from '@cloudinary/react';
 import {Cloudinary} from "@cloudinary/url-gen";
 import {Transformation} from "@cloudinary/url-gen";
 
-import {image} from "@cloudinary/url-gen/qualifiers/source";
-import {Position} from "@cloudinary/url-gen/qualifiers/position";
-import {compass} from "@cloudinary/url-gen/qualifiers/gravity";
-import {focusOn} from "@cloudinary/url-gen/qualifiers/gravity";
-import {FocusOn} from "@cloudinary/url-gen/qualifiers/focusOn";
-
 
 const SingleProject = () => {
     let { id } = useParams();
@@ -115,18 +109,11 @@ const SingleProject = () => {
             }).then((response) => {
                 console.log(response.data);
                 const newImage = response.data.public_id
-                setUploadedImage(newImage)
+                setImageIds([...imageIds, newImage])
+                setImagePreview (null)
             })
         }
 
-        // Create and configure your Cloudinary instance.
-            const cld = new Cloudinary({
-                cloud: {
-                cloudName: 'dcfinwckd'
-                }
-            }); 
-
-            const myImage = cld.image(uploadedImage);
 
 // IMAGES RENDERING: 
 
@@ -146,20 +133,23 @@ const SingleProject = () => {
 
     return ( 
         <>
-        <a href="/current"><h3 className="title"> Back to all current projects</h3></a>
+        <a href="/current"><h3 className="title title-light"> Back to all current projects</h3></a>
         <div className="single-project-wrapper">
-            <div className="button-wrapper">
+            <div className="project-manipulation-btns">
                 <Link to={{pathname: `/edit-project/${projectObject.id}`}} className="add-new">
                     <button>Edit this project</button>
                 </Link>
+                <button onClick={()=> {archiveProject(projectObject.id)}}>
+                    Archive this project
+                </button>
+                <button className="button-font" onClick={()=> {deleteProject(projectObject.id)}}>
+                    Delete this project
+                </button>
             </div>
-            <button onClick={()=> {archiveProject(projectObject.id)}}>
-                Archive this project
-            </button>
-            <button onClick={()=> {deleteProject(projectObject.id)}}>
-                Delete this project
-            </button>
+            
+            
             <div className="project__card card">
+                
                 <div className="project__card--title">{projectObject.title}</div>
                 <div className="project__card--info">{projectObject.materials} </div>
                 <div className="project__card--info">{projectObject.progress} </div>
@@ -168,7 +158,7 @@ const SingleProject = () => {
             {/* UPLOAD */}
             <div className="title-light">Add more pictures? </div>
             <form onSubmit={e => handleSubmit(e)}>
-                <label htmlFor="fileInput">You can add pictures here:</label>
+                <label htmlFor="fileInput"></label>
                 <input 
                     type="file"
                     id="fileInput"
@@ -190,7 +180,8 @@ const SingleProject = () => {
                             key={key}
                             cloudName="dcfinwckd"
                             public_id={imageId}
-                            width="300"/>
+                            width="300"
+                            className="image"/>
                         )    
                 })}
             </div>
@@ -208,14 +199,14 @@ const SingleProject = () => {
                 <button onClick={addNote}>Add a note</button>
             </div>
                 
-            <div className="notes-title add-new" >Here are your notes:</div>
+            <div className="notes-title add-new"></div>
                 {notes.map((note, key) => {
                     return (
-                        <div key={key} className="card">
+                        <div key={key} className="note">
                             <div> 
                                 {note.noteText}
                             </div>
-                            <button className="button-font" onClick={deleteNote}>Delete</button>
+                            <button className="button-font delete-note" onClick={deleteNote}>X</button>
                         </div>                      
                     )})
                 }

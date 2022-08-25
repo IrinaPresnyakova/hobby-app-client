@@ -2,11 +2,10 @@
 @use './../../styles/partials/colors' as *;
 @use './../../styles/partials/fonts' as *;
 
-// .home-main {
-//     position: relative;
-// }
 body {
     position: relative;
+    margin: 0;
+    padding: 0;
 }
 
 .contents {
@@ -16,26 +15,16 @@ body {
     align-items: center;
 }
 .title-wrapper {
-    padding: 2rem;
+    padding: 2rem ;
     width: fit-content;
     background-color: rgb(240, 248, 255, 0.8);
+}
+
+.btn-flushed {
+    @include tablet {
+        background-color: transparent;
+        z-index: 10;
+        margin: 0;
+    }
     
 }
-
-
-
-.auth-container {
-    display: flex;
-    justify-content: space-evenly;
-    @include tablet {
-        flex-direction: column;
-        position: absolute;
-        top: 0;
-        right: 5%;
-
-    }
-}
-
-// .icon {
-//     background-color: rgb(240, 248, 255, 0.8);
-// }
