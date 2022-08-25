@@ -115,18 +115,11 @@ const SingleProject = () => {
             }).then((response) => {
                 console.log(response.data);
                 const newImage = response.data.public_id
-                setUploadedImage(newImage)
+                setImageIds([...imageIds, newImage])
+                setImagePreview (null)
             })
         }
 
-        // Create and configure your Cloudinary instance.
-            const cld = new Cloudinary({
-                cloud: {
-                cloudName: 'dcfinwckd'
-                }
-            }); 
-
-            const myImage = cld.image(uploadedImage);
 
 // IMAGES RENDERING: 
 
@@ -148,18 +141,18 @@ const SingleProject = () => {
         <>
         <a href="/current"><h3 className="title"> Back to all current projects</h3></a>
         <div className="single-project-wrapper">
-            <div className="button-wrapper">
+            <div className="buttons-container">
                 <Link to={{pathname: `/edit-project/${projectObject.id}`}} className="add-new">
                     <button>Edit this project</button>
                 </Link>
-            </div>
-            <button onClick={()=> {archiveProject(projectObject.id)}}>
+                <button onClick={()=> {archiveProject(projectObject.id)}}>
                 Archive this project
-            </button>
-            <button onClick={()=> {deleteProject(projectObject.id)}}>
-                Delete this project
-            </button>
+                </button>
+            </div>
+            
+            
             <div className="project__card card">
+                <button className="button-font delete" onClick={()=> {deleteProject(projectObject.id)}}>X</button>
                 <div className="project__card--title">{projectObject.title}</div>
                 <div className="project__card--info">{projectObject.materials} </div>
                 <div className="project__card--info">{projectObject.progress} </div>
@@ -190,7 +183,8 @@ const SingleProject = () => {
                             key={key}
                             cloudName="dcfinwckd"
                             public_id={imageId}
-                            width="300"/>
+                            width="300"
+                            className="image"/>
                         )    
                 })}
             </div>
@@ -208,14 +202,14 @@ const SingleProject = () => {
                 <button onClick={addNote}>Add a note</button>
             </div>
                 
-            <div className="notes-title add-new" >Here are your notes:</div>
+            <div className="notes-title add-new"></div>
                 {notes.map((note, key) => {
                     return (
-                        <div key={key} className="card">
+                        <div key={key} className="note">
                             <div> 
                                 {note.noteText}
                             </div>
-                            <button className="button-font" onClick={deleteNote}>Delete</button>
+                            <button className="button-font delete-note" onClick={deleteNote}>X</button>
                         </div>                      
                     )})
                 }

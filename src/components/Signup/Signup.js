@@ -2,6 +2,7 @@ import React from 'react'
 import { Formik, Form, Field, ErrorMessage} from "formik";
 import * as Yup from 'yup'
 import axios from "axios";
+import '../Login/Login.scss'
 
 export default function Signup() {
 
@@ -22,16 +23,20 @@ export default function Signup() {
     }
 
   return (
-    <div className="project-form">
+    <div className='content'>
+        <div className="input">
             <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
                 <Form className="project project-field">
-                    <label>You user name: </label>
+                    <label className='aux-text'>You user name: </label>
                     <Field 
                         id="fieldsInput" 
                         name="username" 
-                        placeholder="E.g., Irina_P"/>
+                        placeholder="E.g., Irina_P"
+                        className="input__field"
+                        />
+                        
                     <ErrorMessage name="username" component="span"/>
-                    <label>Enter your password: </label>
+                    <label className='aux-text'>Your password: </label>
                     <Field  
                         autocomplete="off"
                         type="password"
@@ -39,9 +44,11 @@ export default function Signup() {
                         name="password" 
                         placeholder="E.g., password123"/>
                     <ErrorMessage name="materials" component="span"/>
-                    <button type="submit">Click to sing up</button>
+                    <button type="submit">Sign up</button>
                 </Form>
             </Formik>
         </div>
+    </div>
+        
   )
 }

@@ -2,6 +2,8 @@ import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import { useHistory} from "react-router-dom";
 import { AuthContext } from '../../utils/AuthContext'
+import './Login.scss'
+
 
 function Login() {
          //we need state to hold values of the username and password we input
@@ -27,15 +29,18 @@ function Login() {
                 });
             };
   return (
-    <div>
-        <input type="text" onChange={(event) => {
-            setUsername(event.target.value)
-        }}/>
-        <input type="password" onChange={(event) => {
-            setPassword(event.target.value)
-        }}/>    
-        <button onClick={login}>Log in</button>
+    <div className='content'>
+         <div className='input'>
+            <input className="input__field" type="text" onChange={(event) => {
+                setUsername(event.target.value)
+            }}/>
+            <input className="input__field" type="password" onChange={(event) => {
+                setPassword(event.target.value)
+            }}/>    
+            <button onClick={login}>Log in</button>
+        </div>
     </div>
+   
   )
 }
 

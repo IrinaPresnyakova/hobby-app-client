@@ -3,21 +3,68 @@
 @use './../../styles/partials/fonts' as *;
 
 .header-container {
-    // padding: 1rem;
-    margin: 1rem;
-    background-color: rgb(240, 248, 255, 0.8);
-    width: fit-content;
-    padding: 1rem;
-
+    // padding: 0 1rem;
+    // margin: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 
-// .header-title {
-//     text-align: left;
-//     @include textRegular (3rem, 3rem);
-//     @include tablet {
-//          @include textRegular (4rem, 3rem);
-//     }
-   
+
+.header {
+    background-color: rgb(240, 248, 255, 0.8);
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    @include tablet {
+        width: 40rem;
+        margin-top: 5rem;
+    }
     
-// }
+    &__title {
+        
+        text-align: center;
+        @include textTypewriter (1.5rem, 2rem);
+        @include tablet {
+             @include textTypewriter (4rem, 3rem);
+        } 
+    }
+}
+
+.navBar {
+    position: relative;
+    height: 5rem;
+    width: 100%;
+}
+
+.navBar button {
+    position: absolute;
+    width: fit-content;
+    right: 0%;
+    top: 0;
+    z-index: 10;
+    cursor: pointer;
+}
+
+.menuNav {
+    position: fixed;
+    top: 0;
+    background: rgb(240, 248, 255, 0.8);
+    // right: 20%;
+    bottom: 0;
+    height: fit-content;
+    width: 0;
+    overflow: hidden;
+    z-index: 9;
+}
+
+.showMenu {
+    width: 100%;
+    
+}
+
+.nav-link {
+    padding-left: 1rem;
+}

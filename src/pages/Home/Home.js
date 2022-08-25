@@ -32,11 +32,11 @@ const Home = () => {
     };
     
     return(
-    <div className="home-main">
+    <div className="contents">
         <h1 className="title-light">Hi {loginState.username}</h1>
         <AuthContext.Provider value={{ loginState, setLoginState }}>
             { !loginState.status ? ( 
-                <div className="auth-container">
+                <div className="buttons-container">
                     <div className="button-wrapper">
                         <Link to="/auth" className="add-new">
                             <button className="button-font">Sign up</button>
@@ -49,20 +49,20 @@ const Home = () => {
                     </div>
                 </div>
                 ) : (
-                    <div className="auth-container">
+                    <div className="buttons-container">
                         <button onClick={logout}>Log out</button>
                     </div>
                     
                 )}
         </AuthContext.Provider>
-        <div className="contents">
+        {/* <div className="contents"> */}
             
             <div className="title-wrapper">
                 <a href="/current"><h2 className="title">Current projects</h2></a>
                 <a href="/archive"><h2 className="title">Archive</h2></a>
                 <a href="/bucket-list"><h2 className="title">Bucket List</h2></a>
             </div>
-        </div>              
+        {/* </div>               */}
     </div>
     )
 }

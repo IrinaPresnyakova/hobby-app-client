@@ -20,8 +20,12 @@ const CurrentProjects = () => {
     
     return ( 
         <>
-            <h1 className="title title-light">Current projects</h1>
-            
+            <h1 className="title-light">Current projects</h1>
+            <div className="button-wrapper">
+                <Link to="/add-project" >
+                    <button className="button-font"> Add a new project</button>
+                </Link>
+            </div>
             <div className="cards-wrapper">
                 {listOfProjects.map((item, key) => {
                 return (    
@@ -38,12 +42,8 @@ const CurrentProjects = () => {
                 )                    
             })}
             </div>
-            <a href="/archive"><h1 className="title">Archive</h1></a>
-            <div className="button-wrapper">
-                <Link to="/add-project" className="add-new">
-                    <button className="button-font"> Add a new project</button>
-                </Link>
-            </div>
+            <a href="/archive"><h1 className="title title-light">Archive</h1></a>
+            
         </>
      );
 }
