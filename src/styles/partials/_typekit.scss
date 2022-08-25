@@ -30,6 +30,7 @@
     color: white;
     @include tablet {
         @include textTypewriter (3rem, 2.5rem);
+        color: white;
     }
   }
 

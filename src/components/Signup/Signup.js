@@ -3,6 +3,7 @@ import { Formik, Form, Field, ErrorMessage} from "formik";
 import * as Yup from 'yup'
 import axios from "axios";
 import '../Login/Login.scss'
+import { useHistory} from "react-router-dom";
 
 export default function Signup() {
 
@@ -19,7 +20,9 @@ export default function Signup() {
     const onSubmit = (data) => {
         axios
             .post("http://localhost:5500/auth", data)
-            .then(console.log("Sign up successful"))
+            .then(console.log("Sign up successful") )
+            
+            
     }
 
   return (

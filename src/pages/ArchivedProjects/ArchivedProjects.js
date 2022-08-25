@@ -28,7 +28,7 @@ const ArchivedProjects = () => {
                     
                         <div 
                             key={key}
-                            className="note" 
+                            className="card" 
                             onClick={() => {
                                 history.push(`/archive-view/${item.id}`)
                             }

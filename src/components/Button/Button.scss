@@ -18,10 +18,12 @@
     display: flex;
     justify-content: space-evenly;
     @include tablet {
-        flex-direction: column;
+        flex-direction: row;
         position: absolute;
-        top: 0;
-        right: 5%;
+        top: 0%;
+        right: 0%;
+        // margin: 0;
+        // padding: 0;
 
     }
 }
@@ -40,10 +42,19 @@ button {
     border: none;
     cursor: pointer;
     @include tablet {
-        // width: 65%;
+        
     }
     @include desktop {
 
 }
 }
 
+.project-manipulation-btns {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    flex-direction: column;
+    @include tablet {
+        flex-direction: row;
+    }
+}

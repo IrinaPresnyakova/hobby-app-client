@@ -11,20 +11,18 @@
     align-items: center;
 }
 
-
-
 .header {
     background-color: rgb(240, 248, 255, 0.8);
     width: 90%;
     display: flex;
     justify-content: center;
+    margin-top: 2rem;
     @include tablet {
         width: 40rem;
         margin-top: 5rem;
     }
     
     &__title {
-        
         text-align: center;
         @include textTypewriter (1.5rem, 2rem);
         @include tablet {
@@ -37,6 +35,9 @@
     position: relative;
     height: 5rem;
     width: 100%;
+    @include tablet {
+        
+    }
 }
 
 .navBar button {
@@ -46,6 +47,10 @@
     top: 0;
     z-index: 10;
     cursor: pointer;
+    @include tablet {
+        display: none;  
+        
+    }
 }
 
 .menuNav {
@@ -58,6 +63,13 @@
     width: 0;
     overflow: hidden;
     z-index: 9;
+    @include tablet {
+        width: 100%;   
+        display: flex;
+        flex-direction: row;
+        justify-content: left;
+        z-index: 0; 
+    }
 }
 
 .showMenu {
@@ -68,3 +80,5 @@
 .nav-link {
     padding-left: 1rem;
 }
+
+

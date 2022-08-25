@@ -41,9 +41,7 @@ const CurrentProjects = () => {
                         </div>                                     
                 )                    
             })}
-            </div>
-            <a href="/archive"><h1 className="title title-light">Archive</h1></a>
-            
+            </div>          
         </>
      );
 }
