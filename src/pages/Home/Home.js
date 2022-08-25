@@ -32,7 +32,10 @@ const Home = () => {
     
     return(
     <div className="contents">
-        <h1 className="title-light">Hi {loginState.username}</h1>
+        {loginState.username  &&
+            <h1 className="title-light">Hi {loginState.username}</h1>
+        }
+        
         <AuthContext.Provider value={{ loginState, setLoginState }}>
             { !loginState.status ? ( 
                 <div className="buttons-container">

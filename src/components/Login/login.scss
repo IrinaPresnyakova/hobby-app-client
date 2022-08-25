@@ -14,7 +14,7 @@
     align-items: center;
     background-color: rgb(240, 248, 255, 0.8);
     margin-top: 3rem;
-    padding: 2rem 1rem;
+    padding: 2rem ;
     @include tablet {
         width: 20rem;
     }
@@ -23,6 +23,14 @@
 .input__field {
     
     margin-bottom: 1rem;
-    width: 80%;
+    width: 95%;
 
+}
+
+::placeholder { 
+    opacity: 1; transition: opacity .5s; 
+}
+
+:focus::placeholder {
+    opacity: 0;
 }

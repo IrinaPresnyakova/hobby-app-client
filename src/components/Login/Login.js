@@ -31,9 +31,11 @@ function Login() {
   return (
     <div className='content'>
          <div className='input'>
+            <label className='aux-text'>Your username: </label>    
             <input className="input__field" type="text" onChange={(event) => {
                 setUsername(event.target.value)
             }}/>
+            <label className='aux-text'>Your password: </label>
             <input className="input__field" type="password" onChange={(event) => {
                 setPassword(event.target.value)
             }}/>    
