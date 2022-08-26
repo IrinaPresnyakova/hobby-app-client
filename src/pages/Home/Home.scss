@@ -13,6 +13,13 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    &--background {
+        background-color: rgb(240, 248, 255, 0.8);
+        @include tablet {
+            width: 40rem;
+        }
+    }
 }
 .title-wrapper {
     padding: 2rem ;

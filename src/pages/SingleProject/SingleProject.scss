@@ -1,3 +1,10 @@
+.single-project-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+}
+
 .gallery__wrapper {
         display: flex;
         flex-direction: row;
@@ -34,4 +41,16 @@
         top: -5%;
         left: 60%;
         background-color: transparent;
+}
+
+.title {
+        padding-bottom: 1rem;
+}
+
+input {
+        margin: 0 2rem;
+}
+
+.note-text {
+        padding: 1rem;
 }
