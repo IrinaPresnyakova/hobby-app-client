@@ -58,12 +58,14 @@ const SingleArchived = () => {
                 <div className="project__card--title">{archProjectObject.title}</div>
                 <div className="project__card--info">{archProjectObject.materials} </div>
             </div>    
-            <div className="notes-title add-new" >Here are your notes:</div>
+            <div className="cards-wrapper">
                 {notes.map((note, key) => {
                     return (
                         <div key={key} className="note">{note.noteText}</div>
                     )})
                 }
+            </div>
+                
             
         </div>
         </>

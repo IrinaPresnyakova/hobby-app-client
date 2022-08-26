@@ -5,9 +5,6 @@ import '../CurrentProjects/CurrentProjects.scss';
 import { AuthContext } from "../../utils/AuthContext";
 import { Image } from 'cloudinary-react';
 import './SingleProject.scss'
-import {AdvancedImage} from '@cloudinary/react';
-import {Cloudinary} from "@cloudinary/url-gen";
-import {Transformation} from "@cloudinary/url-gen";
 
 
 const SingleProject = () => {
@@ -24,17 +21,17 @@ const SingleProject = () => {
             .get(`http://localhost:5500/projects/${id}`)
             .then((response) => {
                 setProjectObject(response.data); 
-        });
+            });
         axios
-            .get(`http://localhost:5500/notes/${id}`)
+            .get(`http://localhost:5500/projects/notes/${id}`)
             .then((response) => {
                 setNotes(response.data);
-            })
+            });
     }, [])
 
     const addNote = () => {
         axios
-            .post("http://localhost:5500/notes", {
+            .post(`http://localhost:5500/projects/notes/${id}`, {
                 noteText: newNote, 
                 ProjectId:id
             }, 
@@ -49,17 +46,16 @@ const SingleProject = () => {
                     const noteToAdd = {noteText: newNote};
                     setNotes([...notes, noteToAdd]);
                     setNewNote("");
+                    console.log(response.data);
                 }
                 
             })
         }
-   
 
     const archiveProject = (id) => {
         axios
             .patch(`http://localhost:5500/projects/${id}`)
             .then((response) => {
-                // console.log(response.data);
                 alert("This project was archived!")
                 history.push("/current")
             })
@@ -74,14 +70,19 @@ const SingleProject = () => {
             })
         }
 
-        const deleteNote = (noteId) => {
-            axios
-                .delete(`http://localhost:5500/projects/${noteId}`)
-                .then((response) => {
-                    alert("This note was deleted!")
-                    history.push(`http://localhost:5500/projects/${id}`)
-                })
-        }
+    const deleteNote = (noteId) => {
+        console.log(noteId);
+        axios
+            .delete(`http://localhost:5500/projects/notes/${id}/${noteId}`)
+            .then((response) => {
+                axios
+                    .get(`http://localhost:5500/projects/notes/${id}`)
+                    .then((response) => {
+                        setNotes(response.data);
+                });             
+            })
+        
+    }
 
 // IMAGES UPLOAD:
 
@@ -122,7 +123,6 @@ const SingleProject = () => {
             const loadImages = async () => {
                     axios.get("http://localhost:5500/images")
                     .then((response) => {
-                        console.log(response.data);
                         setImageIds(response.data)
                     })
             }
@@ -156,40 +156,43 @@ const SingleProject = () => {
             </div>
 
             {/* UPLOAD */}
-            <div className="title-light">Add more pictures? </div>
-            <form onSubmit={e => handleSubmit(e)}>
-                <label htmlFor="fileInput"></label>
-                <input 
-                    type="file"
-                    id="fileInput"
-                    onChange={e => handleChange(e)}
-                    required/>
+            <div className="contents contents--background">
+                <div className="title">Pictures</div>
+                <form onSubmit={e => handleSubmit(e)}>
+                    <label htmlFor="fileInput"></label>
+                    <input 
+                        type="file"
+                        id="fileInput"
+                        onChange={e => handleChange(e)}
+                        required/>
 
-                {imagePreview && (
-                    <img src={imagePreview} alt="selected" style={{height: '10rem'}}/>
-                )}
-                
-                <button type="submit" className="button-font">Upload image</button>
-            </form>
-
-            {/* RENDER */}
-            <div className="gallery">
-                {imageIds && imageIds.map((imageId, key) => {
-                    return (
-                        <Image 
-                            key={key}
-                            cloudName="dcfinwckd"
-                            public_id={imageId}
-                            width="300"
-                            className="image"/>
-                        )    
-                })}
+                    {imagePreview && (
+                        <img src={imagePreview} alt="selected" style={{height: '10rem'}}/>
+                    )}
+                    
+                    <button type="submit" className="button-font">Upload image</button>
+                </form>
+                     {/* RENDER */}
+                <div className="gallery">
+                    {imageIds && imageIds.map((imageId, key) => {
+                        return (
+                            <Image 
+                                key={key}
+                                cloudName="dcfinwckd"
+                                public_id={imageId}
+                                width="300"
+                                className="image"/>
+                            )    
+                    })}
+                </div>
             </div>
+            
+            
 
+           
 
-
-            <div className="add-new">
-                <div className="title-light">Add a new note</div>
+            <div className="contents contents--background">
+                <div className="title">Notes</div>
                 <input 
                     type="text" 
                     placeholder="Please enter a new note" 
@@ -197,20 +200,22 @@ const SingleProject = () => {
                     onChange={(event) => {setNewNote(event.target.value)}}
                     value={newNote}/>
                 <button onClick={addNote}>Add a note</button>
-            </div>
+            
                 
-            <div className="notes-title add-new"></div>
+            <div className="cards-wrapper">
                 {notes.map((note, key) => {
                     return (
                         <div key={key} className="note">
-                            <div> 
+                            <div className="note-text"> 
                                 {note.noteText}
                             </div>
-                            <button className="button-font delete-note" onClick={deleteNote}>X</button>
+                            <button className="button-font delete-note" onClick={() =>{ deleteNote(note.id)}}>X</button>
                         </div>                      
                     )})
                 }
-            
+            </div>
+                
+            </div>
         </div>
         </>
         
