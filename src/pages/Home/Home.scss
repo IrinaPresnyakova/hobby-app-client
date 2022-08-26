@@ -17,7 +17,7 @@ body {
     &--background {
         background-color: rgb(240, 248, 255, 0.8);
         @include tablet {
-            width: 40rem;
+            width: 50rem;
         }
     }
 }

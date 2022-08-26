@@ -105,10 +105,11 @@ const SingleProject = () => {
 
         const handleSubmit = async (e) => {
             e.preventDefault();
-            const response = await axios.post("http://localhost:5500/images", {
-                image: imagePreview
+            const response = await axios.post(`http://localhost:5500/images/${id}`, {
+                image: imagePreview,
+                ProjectId:id
             }).then((response) => {
-                console.log(response.data);
+                console.log(response.data.public_id);
                 const newImage = response.data.public_id
                 setImageIds([...imageIds, newImage])
                 setImagePreview (null)
