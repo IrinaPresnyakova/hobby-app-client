@@ -46,9 +46,9 @@ const AddProject = () => {
                         <ErrorMessage name="materials" component="span"/>
                         <Field className="input__field" id="fieldsInput" name="materials" placeholder="What will you need?"/>
                         
-                        <label className="aux-text">Progress: </label>
+                        <label className="aux-text">Planning: </label>
                         <ErrorMessage name="progress" component="span"/>
-                        <Field className="input__field" id="fieldsInput" name="progress" placeholder="What have you completed so far?"/>
+                        <Field className="input__field" id="fieldsInput" name="progress" placeholder="Plan your project!"/>
                        
                         <div className="button-wrapper">
                             <button type="submit">Add a new project</button>

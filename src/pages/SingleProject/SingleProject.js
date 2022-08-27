@@ -104,12 +104,13 @@ const SingleProject = () => {
         }
 
         const handleSubmit = async (e) => {
-            e.preventDefault();
-            const response = await axios.post(`http://localhost:5500/images/${id}`, {
+            e.preventDefault(); 
+            console.log("ProjectID",id);
+            const response = await axios.post(`http://localhost:5500/projects/images/${id}`, {
                 image: imagePreview,
                 ProjectId:id
             }).then((response) => {
-                console.log(response.data.public_id);
+                console.log("RESPONSE",response.data);
                 const newImage = response.data.public_id
                 setImageIds([...imageIds, newImage])
                 setImagePreview (null)
@@ -119,18 +120,20 @@ const SingleProject = () => {
 
 // IMAGES RENDERING: 
 
-            const [imageIds, setImageIds] = useState("")
+        const [imageIds, setImageIds] = useState("")
 
-            const loadImages = async () => {
-                    axios.get("http://localhost:5500/images")
-                    .then((response) => {
-                        setImageIds(response.data)
-                    })
-            }
+        const loadImages = async () => {
+                axios.get(`http://localhost:5500/projects/images/${id}`)
+                .then((response) => {
+                    
+                    setImageIds(response.data)
+                    console.log("FROM B-E", response.data)
+                })
+        }
 
-            useEffect(() => {
-                loadImages()
-            }, [])
+        useEffect(() => {
+            loadImages()
+        }, [])
 
     return ( 
         <>
