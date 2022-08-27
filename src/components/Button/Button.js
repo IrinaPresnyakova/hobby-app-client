@@ -4,7 +4,6 @@ import './Button.scss';
 function Button(props) {
 
   function handleClick() {
-    console.log("button clicked");
   }
     return (
             <button 

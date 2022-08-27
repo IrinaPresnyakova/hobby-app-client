@@ -18,7 +18,10 @@ const EditProject = () => {
                 .get(`http://localhost:5500/projects/${id}`)
                 .then((response) => {
                     setProjectObject(response.data); 
-            });
+                })
+                .catch((err) => {
+                    console.log(err);
+                })
     }, [])
 
     const { title, materials, progress } = projectObject;
@@ -35,22 +38,16 @@ const EditProject = () => {
         progress: Yup.string().required()
     })
 
-    // const handleOnChange = (event) => {
-    //     event.persist();
-        // let name = event.target.name;
-        // let value = event.target.value; 
-        // setProjectObject({...projectObject, [event.target.name]: event.target.value})
-    //     console.log("Form::onChange", projectObject);
-    // }
-
     const updateProject = (data) => {
         axios
             .patch(`http://localhost:5500/edit-project/${id}`, data)
             .then((response) => {
-                console.log(data);
                 // setProjectObject(response.data)
                 history.push("/current")
                 console.log("This project was modified")
+            })
+            .catch((err) => {
+                console.log(err);
             })
         }
 

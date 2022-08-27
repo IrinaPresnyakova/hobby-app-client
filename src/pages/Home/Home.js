@@ -22,7 +22,9 @@ const Home = () => {
             } else {
                 setLoginState({username: response.data.username, id: response.data.id, status: true}) 
             }
-        });     
+        }).catch((err) => {
+            console.log(err);
+        })     
     }, [])
 
     const logout = () => {

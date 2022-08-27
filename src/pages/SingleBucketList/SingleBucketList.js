@@ -9,7 +9,6 @@ const SingleBucketList = () => {
 
     const [bucketProjectObject, setBucketProjectObject] = useState ({});
     const [notes, setNotes] = useState ([]);
-    console.log("are we here?");
     let history = useHistory();
 
     useEffect(() => {
@@ -17,8 +16,10 @@ const SingleBucketList = () => {
             .get(`http://localhost:5500/bucket-list-view/${id}`)
             .then((response) => {
                 setBucketProjectObject(response.data);
-                console.log("got it", response.data); 
-        });
+            })
+            .catch((err) => {
+                console.log(err);
+            });
         axios
             .get(`http://localhost:5500/notes/${id}`)
             .then((response) => {
@@ -26,7 +27,7 @@ const SingleBucketList = () => {
             })
             .catch((err) => {
                 console.log(err);
-            })
+            });
     }, [])
 
     const deleteProject = (id) => {
@@ -36,6 +37,9 @@ const SingleBucketList = () => {
                 alert("This project was deleted!")
                 history.push("/bucket-list")
             })
+            .catch((err) => {
+                console.log(err);
+            })
     }
 
     const unbucketProject = (id) => {
@@ -43,9 +47,11 @@ const SingleBucketList = () => {
         axios
             .patch(`http://localhost:5500/bucket-list-view/${id}`)
             .then((response) => {
-                // console.log(response.data);
                 alert("This project was moved to current!")
                 history.push("/current")
+            })
+            .catch((err) => {
+                console.log(err);
             })
     }
 

@@ -23,6 +23,9 @@ const SingleArchived = () => {
             .then((response) => {
                 setNotes(response.data);
             })
+            .catch((err) => {
+                console.log(err);
+            })
     }, [])
 
     const deleteProject = (id) => {
@@ -32,6 +35,9 @@ const SingleArchived = () => {
                 alert("This project was deleted!")
                 history.push("/archive")
             })
+            .catch((err) => {
+                console.log(err);
+            })
     }
 
     const unarchiveProject = (id) => {
@@ -39,9 +45,11 @@ const SingleArchived = () => {
         axios
             .patch(`http://localhost:5500/archive-view/${id}`)
             .then((response) => {
-                // console.log(response.data);
                 alert("This project was returned to current!")
                 history.push("/current")
+            })
+            .catch((err) => {
+                console.log(err);
             })
     }
 

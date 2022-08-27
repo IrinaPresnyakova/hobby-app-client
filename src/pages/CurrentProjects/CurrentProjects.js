@@ -16,6 +16,9 @@ const CurrentProjects = () => {
         .then((response) => {
             setListOfProjects(response.data);
         })
+        .catch((err) => {
+            console.log(err);
+        })
     }, []);
     
     return ( 

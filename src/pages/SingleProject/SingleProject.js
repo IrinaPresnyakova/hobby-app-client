@@ -21,11 +21,17 @@ const SingleProject = () => {
             .get(`http://localhost:5500/projects/${id}`)
             .then((response) => {
                 setProjectObject(response.data); 
+            })
+            .catch((err) => {
+                console.log(err);
             });
         axios
             .get(`http://localhost:5500/projects/notes/${id}`)
             .then((response) => {
                 setNotes(response.data);
+            })
+            .catch((err) => {
+                console.log(err);
             });
     }, [])
 
@@ -48,7 +54,9 @@ const SingleProject = () => {
                     setNewNote("");
                     console.log(response.data);
                 }
-                
+            })
+            .catch((err) => {
+                console.log(err);
             })
         }
 
@@ -59,6 +67,9 @@ const SingleProject = () => {
                 alert("This project was archived!")
                 history.push("/current")
             })
+            .catch((err) => {
+                console.log(err);
+            })
         }
 
     const deleteProject = (id) => {
@@ -67,6 +78,9 @@ const SingleProject = () => {
             .then((response) => {
                 alert("This project was deleted!")
                 history.push("/current")
+            })
+            .catch((err) => {
+                console.log(err);
             })
         }
 
@@ -79,7 +93,10 @@ const SingleProject = () => {
                     .get(`http://localhost:5500/projects/notes/${id}`)
                     .then((response) => {
                         setNotes(response.data);
-                });             
+                })
+                .catch((err) => {
+                    console.log(err);
+                })             
             })
         
     }
@@ -101,19 +118,19 @@ const SingleProject = () => {
         const handleChange = (e) => {
             const file = e.target.files[0];
             previewFiles(file)
+           
         }
 
         const handleSubmit = async (e) => {
             e.preventDefault(); 
-            console.log("ProjectID",id);
             const response = await axios.post(`http://localhost:5500/projects/images/${id}`, {
                 image: imagePreview,
                 ProjectId:id
             }).then((response) => {
-                console.log("RESPONSE",response.data);
                 const newImage = response.data.public_id
                 setImageIds([...imageIds, newImage])
                 setImagePreview (null)
+                
             })
         }
 
@@ -124,10 +141,11 @@ const SingleProject = () => {
 
         const loadImages = async () => {
                 axios.get(`http://localhost:5500/projects/images/${id}`)
-                .then((response) => {
-                    
+                .then((response) => {                   
                     setImageIds(response.data)
-                    console.log("FROM B-E", response.data)
+                })
+                .catch((err) => {
+                    console.log(err);
                 })
         }
 
@@ -162,7 +180,7 @@ const SingleProject = () => {
             {/* UPLOAD */}
             <div className="contents contents--background">
                 <div className="title">Pictures</div>
-                <form onSubmit={e => handleSubmit(e)}>
+                <form className="contents" onSubmit={e => handleSubmit(e)}>
                     <label htmlFor="fileInput"></label>
                     <input 
                         type="file"
@@ -177,7 +195,7 @@ const SingleProject = () => {
                     <button type="submit" className="button-font">Upload image</button>
                 </form>
                      {/* RENDER */}
-                <div className="gallery">
+                <div className="gallery__wrapper">
                     {imageIds && imageIds.map((imageId, key) => {
                         return (
                             <Image 
@@ -190,10 +208,6 @@ const SingleProject = () => {
                     })}
                 </div>
             </div>
-            
-            
-
-           
 
             <div className="contents contents--background">
                 <div className="title">Notes</div>

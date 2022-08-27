@@ -13,14 +13,16 @@ const ArchivedProjects = () => {
         .get("http://localhost:5500/archive")
         .then((response) => {
             setListOfArchived(response.data);
-            console.log(response);
+        })
+        .catch((err) => {
+            console.log(err);
         })
     }, []);
     
     return ( 
         <>
             <h1 className="title title-light">Archived projects</h1>
-            <h2 className="aux-text">Click on a project to view details</h2>
+            
            
             <div className="small-cards-wrapper">
                 {listOfArchived.map((item, key) => {
@@ -34,7 +36,7 @@ const ArchivedProjects = () => {
                             }
                             }>
                             <div className="project__title" >Project: {item.title}</div>
-                            
+                            <h2 className="aux-text">(click on a project to view details)</h2>
                         </div>  
                                                      
                 )                    

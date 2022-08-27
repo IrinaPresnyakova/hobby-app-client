@@ -23,7 +23,7 @@
 .input__field {
     
     margin-bottom: 1rem;
-    width: 95%;
+    width: 80%;
 
 }
 
@@ -33,4 +33,8 @@
 
 :focus::placeholder {
     opacity: 0;
+}
+
+#signup {
+    padding-top: 0;
 }
