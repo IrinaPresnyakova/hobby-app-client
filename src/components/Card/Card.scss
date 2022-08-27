@@ -1,0 +1,94 @@
+@use './../../styles/partials/mixins' as *;
+@use './../../styles/partials/colors' as *;
+@use './../../styles/partials/fonts' as *;
+
+.cards-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    @include tablet {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+  
+  }
+
+  .card {
+        position: relative;
+        @include textRegular(1.3rem, 2rem);
+        padding: 1rem;
+        z-index: 1;
+        background-color: aliceblue;
+        background-image:
+          linear-gradient(180deg, aliceblue 3rem, #F0A4A4 calc(3rem), #F0A4A4 calc(3rem + 2px), transparent 1px),
+          repeating-linear-gradient(0deg, transparent, transparent 1.5rem, #DDD 1px, #DDD calc(1.5rem + 1px));
+        // box-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.7);
+        height: 22rem;
+        width: 14rem;
+        margin: 2rem;
+        @include tablet {
+            height: 14rem;
+            width: 400px;
+    }
+  }
+  
+ 
+
+  .small-cards-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    @include tablet {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+}
+  
+  .small-card {
+    border: .0625rem solid $dark-byzantium;
+    background-color: $tea-green;
+    border-radius: .25rem;
+    margin: 1rem;
+    padding: 1rem;
+    height: 10rem;
+    width: 12rem;
+  
+    font-size: 1.5rem;
+   
+    @include tablet {
+      height: 20rem;
+      width: 17rem
+    }
+}
+
+.note {
+  @include textRegular(1.5rem, 2rem);
+  width: 275px;    
+  margin: 25px;    
+  min-height:250px;
+  max-height:250px;
+  padding-top:35px;
+  position:relative;   
+  border:1px solid #E8E8E8;  
+  font-size:1.5rem;
+        
+  border-bottom-right-radius: 60px 5px;
+  display:inline-block;    
+background: linear-gradient(135deg, #ffff88 81%,#ffff88 82%,#ffff88 82%,#ffffc6 100%); /* W3C */
+}
+
+.note:after {     
+  content: "";
+  position:absolute;
+  z-index:-1;
+  right:-0px; bottom:20px;
+  width:200px;
+  height: 25px;
+  background: rgba(0, 0, 0, 0.2);
+  box-shadow:2px 15px 5px rgba(0, 0, 0, 0.40);
+  transform: matrix(-1, -0.1, 0, 1, 0, 0);
+         
+}

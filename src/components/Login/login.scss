@@ -1,0 +1,40 @@
+@use './../../styles/partials/mixins' as *;
+@use './../../styles/partials/typekit' as *;
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.input {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(240, 248, 255, 0.8);
+    margin-top: 3rem;
+    padding: 2rem ;
+    @include tablet {
+        width: 20rem;
+    }
+}
+
+.input__field {
+    
+    margin-bottom: 1rem;
+    width: 80%;
+
+}
+
+::placeholder { 
+    opacity: 1; transition: opacity .5s; 
+}
+
+:focus::placeholder {
+    opacity: 0;
+}
+
+#signup {
+    padding-top: 0;
+}

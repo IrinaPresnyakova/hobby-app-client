@@ -1,0 +1,23 @@
+@use './../../styles/partials/mixins' as *;
+
+
+.add-new {
+  font-size: 2rem;
+
+}
+
+input {
+  height: 2rem;
+  font-size: 1rem;
+
+}
+
+a {
+  text-decoration: none;
+}
+
+.title-light {
+   font-size: 2rem;
+  // padding-top: 2rem;
+}
+

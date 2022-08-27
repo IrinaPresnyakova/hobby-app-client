@@ -1,0 +1,56 @@
+.single-project-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+}
+
+.gallery__wrapper {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+}
+
+.image {
+        background: #ffffff;
+        display: inline-block;
+        margin: 1rem;
+        padding: 15px 15px 80px;
+        // height: 15rem;
+        width: 15rem;
+
+        // text-align: center;
+        // text-decoration: none;
+        
+        box-shadow: 0 4px 6px rgba(0, 0, 0, .3);
+        
+        // transition: all .20s linear;
+        // cursor: pointer;
+        // position: relative;
+}
+
+.delete {
+        position: absolute;
+        top: -5%;
+        left: 75%;
+        background-color: transparent;
+}
+
+.delete-note {
+        position: absolute;
+        top: -5%;
+        left: 60%;
+        background-color: transparent;
+}
+
+.title {
+        padding-bottom: 1rem;
+}
+
+input {
+        margin: 0 2rem;
+}
+
+.note-text {
+        padding: 1rem;
+}
