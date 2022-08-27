@@ -10,7 +10,6 @@ import Button from "../../components/Button/Button";
 const BucketList = () => {
     // const [projectObject, setProjectObject] = useState ({});
     const [bucketList, setBucketList] = useState([])
-    // console.log(projectObject);
     let history = useHistory();
 
     useEffect(() => {
@@ -18,6 +17,9 @@ const BucketList = () => {
         .get("http://localhost:5500/bucket-list")
         .then((response) => {
             setBucketList(response.data);
+        })
+        .catch((err) => {
+            console.log(err);
         })
     }, []);
 

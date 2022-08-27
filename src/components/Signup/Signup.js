@@ -21,10 +21,11 @@ export default function Signup() {
         axios
             .post("http://localhost:5500/auth", data)
             .then((response) => {
-                console.log(response.data);
                 alert("Thank you for signing up, please log in to start planning")
                 history.push('/')
-
+            })
+            .catch((err) => {
+                console.log(err);
             })
         
     }
@@ -36,20 +37,27 @@ export default function Signup() {
             <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
                 <Form className="project project-field">
                     <label className='aux-text'>You user name: </label>
+                    <ErrorMessage name="username" component="span"/>
                     <Field 
                         name="username" 
                         placeholder="E.g., Irina_P"
                         className="input__field"
+                        autoComplete='off'
                         />
                         
-                    <ErrorMessage name="username" component="span"/>
+                    
                     <label className='aux-text'>Your password: </label>
+                    <ErrorMessage name="materials" component="span"/>
                     <Field  
                         type="password" 
                         name="password" 
-                        placeholder="E.g., password123"/>
-                    <ErrorMessage name="materials" component="span"/>
-                    <button type="submit">Sign up</button>
+                        placeholder="E.g., password123"
+                        className="input__field"/>
+                    
+                    <div className='contents' id='signup'>
+                        <button type="submit">Sign up</button>
+                    </div>
+                    
                 </Form>
             </Formik>
         </div>

@@ -5,6 +5,7 @@ import "../../components/Card/Card.scss"
 import * as Yup from 'yup'
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import './AddIdea.scss'
 
 const AddIdea = () => {
     let history = useHistory();
@@ -15,7 +16,7 @@ const AddIdea = () => {
     }
 
     const validationSchema = Yup.object().shape({
-        title: Yup.string().min(3).max(25).required("You must input a name for your project"),
+        title: Yup.string().min(3).max(50).required("You must input a name for your project"),
        
     })
 
@@ -24,7 +25,9 @@ const AddIdea = () => {
         .post("http://localhost:5500/bucket-list", data)
         .then((response) => {
             history.push("/bucket-list")
-            console.log("IT WORKED")
+        })
+        .catch((err) => {
+            console.log(err);
         })
     }
 
@@ -32,10 +35,10 @@ const AddIdea = () => {
 
     return ( 
         
-        <div className="project-form">
-            <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
-                <Form className="project project-field">
-                    <label>Project name: </label>
+        <div className="project-form contents">
+            <Formik className="" initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
+                <Form className="project project-field contents contents--background">
+                    <label></label>
                     <Field id="titleInput" name="title" placeholder="Enter a title"/>
                     <ErrorMessage name="title" component="span"/>
                     <button type="submit">Add a new idea</button>

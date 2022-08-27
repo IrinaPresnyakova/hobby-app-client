@@ -17,7 +17,7 @@ const AddProject = () => {
     }
 
     const validationSchema = Yup.object().shape({
-        title: Yup.string().min(3).max(25).required("You must input a name for your project"),
+        title: Yup.string().min(3).max(30).required("You must input a name for your project"),
         materials: Yup.string().required(),
         progress: Yup.string().required()
     })
@@ -27,7 +27,9 @@ const AddProject = () => {
         .post("http://localhost:5500/current", data)
         .then((response) => {
             history.push("/current")
-            console.log("IT WORKED")
+        })
+        .catch((err) => {
+            console.log(err);
         })
     }
 

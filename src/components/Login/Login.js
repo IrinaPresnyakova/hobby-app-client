@@ -26,7 +26,10 @@ function Login() {
                         setLoginState({username: response.data.username, id: response.data.id, status: true});
                         history.push('/')
                     }
-                });
+                    })
+                .catch((err) => {
+                    console.log(err);
+                })    
             };
   return (
     <div className='content'>

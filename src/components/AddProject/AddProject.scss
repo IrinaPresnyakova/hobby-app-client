@@ -1,8 +1,10 @@
-  
+@use './../../styles/partials/mixins' as *;
+@use './../../styles/partials/typekit' as *;
+
 span {
     color: red;
     padding-top: 2rem;
-
+    font-family: 'Courier Prime';
 }
 
 button {
