@@ -1,4 +1,4 @@
-Working title: HobScotch
+Working title: Hobby tracker
 (Hobby projects management system)
 This is a capstone app I am making to satisfy the requirements of the Web Dev diploma program with Brainstation. 
 It's a simple CRUD app that helps people keep track of various hobby projects they engage in. 
