@@ -9,6 +9,11 @@
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
+        position: relative;
+}
+
+.image-wrapper {
+        position: relative;
 }
 
 .image {
@@ -38,7 +43,15 @@
 
 .delete-note {
         position: absolute;
+      
         top: -5%;
+        left: 60%;
+        background-color: transparent;
+}
+
+.delete-image {
+        position: absolute;
+        top: 70%;
         left: 60%;
         background-color: transparent;
 }

@@ -85,7 +85,6 @@ const SingleProject = () => {
         }
 
     const deleteNote = (noteId) => {
-        console.log(noteId);
         axios
             .delete(`http://localhost:5500/projects/notes/${id}/${noteId}`)
             .then((response) => {
@@ -126,16 +125,17 @@ const SingleProject = () => {
             const response = await axios.post(`http://localhost:5500/projects/images/${id}`, {
                 image: imagePreview,
                 ProjectId:id
+                
             }).then((response) => {
                 const newImage = response.data.public_id
                 setImageIds([...imageIds, newImage])
                 setImagePreview (null)
-                
+                console.log("image ID", newImage); 
             })
-        }
+                  }
 
 
-// IMAGES RENDERING: 
+// RENDERING IMAGES: 
 
         const [imageIds, setImageIds] = useState("")
 
@@ -152,6 +152,21 @@ const SingleProject = () => {
         useEffect(() => {
             loadImages()
         }, [])
+
+
+// DELETING IMAGES
+
+        const deleteImage = async(imageId) => {
+            console.log("clicked");
+            axios
+                .delete(`http://localhost:5500/projects/images/${id}/${imageId}`)
+                .then(() => {
+                    loadImages();
+                })
+                .catch((err) => {
+                    console.log(err);
+                })
+        }
 
     return ( 
         <>
@@ -177,7 +192,7 @@ const SingleProject = () => {
                 <div className="project__card--info">{projectObject.progress} </div>
             </div>
 
-            {/* UPLOAD */}
+            {/* UPLOAD IMAGE*/}
             <div className="contents contents--background">
                 <div className="title">Pictures</div>
                 <form className="contents" onSubmit={e => handleSubmit(e)}>
@@ -194,17 +209,22 @@ const SingleProject = () => {
                     
                     <button type="submit" className="button-font">Upload image</button>
                 </form>
-                     {/* RENDER */}
+                     {/* RENDER IMAGES*/}
                 <div className="gallery__wrapper">
                     {imageIds && imageIds.map((imageId, key) => {
                         return (
-                            <Image 
-                                key={key}
-                                cloudName="dcfinwckd"
-                                public_id={imageId}
-                                width="300"
-                                className="image"/>
-                            )    
+                            <div key={key} className="image-wrapper">  
+                                <Image 
+                                    
+                                    cloudName="dcfinwckd"
+                                    public_id={imageId}
+                                    width="300"
+                                    className="image"/>
+                                <button className="button-font delete-image" onClick={deleteImage}>X</button>
+                             
+                            </div>
+                            )
+                               
                     })}
                 </div>
             </div>
