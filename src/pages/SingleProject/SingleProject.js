@@ -156,12 +156,13 @@ const SingleProject = () => {
 
 // DELETING IMAGES
 
-        const deleteImage = async(imageId) => {
-            console.log("clicked");
+        const deleteImage = async(id) => {
+            console.log("clicked", id);
             axios
-                .delete(`http://localhost:5500/projects/images/${id}/${imageId}`)
-                .then(() => {
-                    loadImages();
+                .delete(`http://localhost:5500/projects/images/${id}/${id}`)
+                .then((response) => {
+                    console.log("image deleted");
+                    loadImages(response.data);
                 })
                 .catch((err) => {
                     console.log(err);
@@ -218,9 +219,10 @@ const SingleProject = () => {
                                     
                                     cloudName="dcfinwckd"
                                     public_id={imageId}
+                                    id={id}
                                     width="300"
                                     className="image"/>
-                                <button className="button-font delete-image" onClick={deleteImage}>X</button>
+                                <button className="button-font delete-image" onClick={() => {deleteImage(id)}}>X</button>
                              
                             </div>
                             )
