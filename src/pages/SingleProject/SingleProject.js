@@ -52,7 +52,6 @@ const SingleProject = () => {
                     const noteToAdd = {noteText: newNote};
                     setNotes([...notes, noteToAdd]);
                     setNewNote("");
-                    console.log(response.data);
                 }
             })
             .catch((err) => {
@@ -85,7 +84,6 @@ const SingleProject = () => {
         }
 
     const deleteNote = (noteId) => {
-        console.log(noteId);
         axios
             .delete(`http://localhost:5500/projects/notes/${id}/${noteId}`)
             .then((response) => {
@@ -103,7 +101,6 @@ const SingleProject = () => {
 
 // IMAGES UPLOAD:
 
-        const [file, setFile] = useState("");
         const [imagePreview, setImagePreview] = useState("")
         const [uploadedImage, setUploadedImage] = useState("")
 
@@ -118,7 +115,6 @@ const SingleProject = () => {
         const handleChange = (e) => {
             const file = e.target.files[0];
             previewFiles(file)
-           
         }
 
         const handleSubmit = async (e) => {
@@ -126,32 +122,49 @@ const SingleProject = () => {
             const response = await axios.post(`http://localhost:5500/projects/images/${id}`, {
                 image: imagePreview,
                 ProjectId:id
+                
             }).then((response) => {
                 const newImage = response.data.public_id
                 setImageIds([...imageIds, newImage])
                 setImagePreview (null)
-                
             })
         }
 
 
-// IMAGES RENDERING: 
+// RENDERING IMAGES: 
 
-        const [imageIds, setImageIds] = useState("")
+        const [imageIds, setImageIds] = useState("")     
 
         const loadImages = async () => {
                 axios.get(`http://localhost:5500/projects/images/${id}`)
-                .then((response) => {                   
+                .then((response) => {                  
                     setImageIds(response.data)
                 })
                 .catch((err) => {
                     console.log(err);
                 })
+
         }
 
         useEffect(() => {
             loadImages()
         }, [])
+
+
+// DELETING IMAGES
+        
+        const deleteImage = async(id) => {
+            
+            axios
+                .delete(`http://localhost:5500/projects/images/${id}/${id}`)
+                .then((response) => {
+                    console.log("image deleted", response.data);
+                    loadImages(response.data);
+                })
+                .catch((err) => {
+                    console.log(err);
+                })
+        }
 
     return ( 
         <>
@@ -177,7 +190,7 @@ const SingleProject = () => {
                 <div className="project__card--info">{projectObject.progress} </div>
             </div>
 
-            {/* UPLOAD */}
+            {/* UPLOAD IMAGE*/}
             <div className="contents contents--background">
                 <div className="title">Pictures</div>
                 <form className="contents" onSubmit={e => handleSubmit(e)}>
@@ -194,17 +207,22 @@ const SingleProject = () => {
                     
                     <button type="submit" className="button-font">Upload image</button>
                 </form>
-                     {/* RENDER */}
+                     {/* RENDER IMAGES*/}
                 <div className="gallery__wrapper">
-                    {imageIds && imageIds.map((imageId, key) => {
+                    {imageIds && imageIds.map((imageIds, key) => {
+                        const id = imageIds.id
+                        const public_id = imageIds.public_id                        
                         return (
-                            <Image 
-                                key={key}
-                                cloudName="dcfinwckd"
-                                public_id={imageId}
-                                width="300"
-                                className="image"/>
-                            )    
+                            <div key={key} className="image-wrapper">  
+                                <Image
+                                    cloudName="dcfinwckd"
+                                    public_id={public_id}
+                                    id={id}
+                                    width="300"
+                                    className="image"/>
+                                <button className="button-font delete-image" onClick={() => {deleteImage(id)}}>X</button>
+                            </div>
+                            )         
                     })}
                 </div>
             </div>
