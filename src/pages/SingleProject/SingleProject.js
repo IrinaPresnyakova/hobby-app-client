@@ -29,6 +29,7 @@ const SingleProject = () => {
             .get(`http://localhost:5500/projects/notes/${id}`)
             .then((response) => {
                 setNotes(response.data);
+                console.log("This is posted notes, obj with IDs!!!", response.data);
             })
             .catch((err) => {
                 console.log(err);
@@ -36,10 +37,12 @@ const SingleProject = () => {
     }, [])
 
     const addNote = () => {
+        const noteId = notes.id
         axios
             .post(`http://localhost:5500/projects/notes/${id}`, {
                 noteText: newNote, 
-                ProjectId:id
+                ProjectId: id, 
+                id: noteId
             }, 
             {headers: {
                 tokenForAccess: localStorage.getItem("tokenForAccess")
@@ -49,9 +52,14 @@ const SingleProject = () => {
                 if (response.data.error) {
                     console.log(response.data);
                 } else {
-                    const noteToAdd = {noteText: newNote};
+                    const noteToAdd = {
+                        noteText: newNote, 
+                        id: noteId
+                        //BUT response data SHOULD include the noteId!!! 
+                    }
                     setNotes([...notes, noteToAdd]);
                     setNewNote("");
+                    console.log("posting a note", response.data);
                 }
             })
             .catch((err) => {
