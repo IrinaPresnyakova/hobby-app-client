@@ -183,11 +183,11 @@ const SingleProject = () => {
             </div>
             
             
-            <div className="project__card card">
+            <div className="project card">
                 
-                <div className="project__card--title">{projectObject.title}</div>
-                <div className="project__card--info">{projectObject.materials} </div>
-                <div className="project__card--info">{projectObject.progress} </div>
+                <div className="project__title">{projectObject.title}</div>
+                <div className="project__detail">{projectObject.materials} </div>
+                <div className="project__detail">{projectObject.progress} </div>
             </div>
 
             {/* UPLOAD IMAGE*/}

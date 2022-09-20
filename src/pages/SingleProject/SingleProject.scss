@@ -5,6 +5,10 @@
         align-items: center;
 }
 
+.project {
+        position: relative;
+}
+
 .gallery__wrapper {
         display: flex;
         flex-direction: row;
@@ -51,7 +55,7 @@
 
 .delete-image {
         position: absolute;
-        top: 80%;
+        top: 70%;
         left: 60%;
         background-color: transparent;
 }

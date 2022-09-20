@@ -38,9 +38,9 @@ const CurrentProjects = () => {
                                 history.push(`/projects/${item.id}`)
                             }}
                             >
-                            <div className="project__title">Project: {item.title} </div>
-                            <div className="project__detail">Materials: {item.materials}</div>
-                            <div className="project__detail">Progress: {item.progress}</div>
+                            <div className="project__title">{item.title} </div>
+                            <div className="project__detail">I will need: {item.materials}</div>
+                            <div className="project__detail">Next steps: {item.progress}</div>
                         </div>                                     
                 )                    
             })}
