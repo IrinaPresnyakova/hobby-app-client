@@ -7,15 +7,21 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    @include tablet {
+    @include laptop {
+      position: relative;
       flex-direction: row;
       flex-wrap: wrap;
     }
-  
   }
 
   .card {
-        position: relative;
+        position: sticky;
+        top: 5rem;
+        @include laptop {
+          position: relative;
+          top: 0;
+        }
+      
         @include textRegular(1.3rem, 2rem);
         padding: 1rem;
         z-index: 1;
@@ -34,7 +40,14 @@
     }
   }
   
- 
+   @for $i from 1 through 10 {
+          .card:nth-child(#{$i}n) {
+            top: $i * 50px;
+            @include laptop {
+              top: 0;
+            }
+          }
+        }
 
   .small-cards-wrapper {
     display: flex;
@@ -91,4 +104,8 @@ background: linear-gradient(135deg, #ffff88 81%,#ffff88 82%,#ffff88 82%,#ffffc6 
   box-shadow:2px 15px 5px rgba(0, 0, 0, 0.40);
   transform: matrix(-1, -0.1, 0, 1, 0, 0);
          
+}
+
+.project__title {
+  @include textBold(1.5rem, 2rem);
 }
